@@ -1,0 +1,229 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
+</head>
+
+<body>
+
+    <div class="container">
+        <h2>Type hoogspanningsverbinding</h2>
+        <p id="outputValues">
+        </p>
+        <div class="panel-group" id="accordion">
+            <div class="panel panel-default">
+                <div class="panel-heading">
+                    <h4 class="panel-title">
+          <a data-toggle="collapse" data-parent="#accordion" href="#collapse1">HSP-lijn (hoogspanningslijn)</a>
+        </h4>
+                </div>
+                <div id="collapse1" class="panel-collapse collapse">
+                    <div class="panel-body">
+                        <div class="form-group">
+                            <label class="control-label col-xs-6">Leiding ge&iuml;soleerd opgesteld?</label>
+                            <div class="col-xs-6">
+                                <select class="form-control" id="hspl1">
+                                    <option value="Ja">Ja</option>
+                                    <option value="Nee">Nee</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="control-label col-xs-6">Parallelloop</label>
+                            <div class="col-xs-6">
+                                <input type="number" class="form-control" placeholder="Afstand (km)" id="hspl2">
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="control-label col-xs-6">Hart-op-hart</label>
+                            <div class="col-xs-6">
+                                <input type="number" class="form-control" placeholder="Afstand (m)" id="hspl3">
+                            </div>
+                        </div>
+                        <div class="form-group afstandtotmast" style="display:none">
+                            <label class="control-label col-xs-6">Afstand tot mast</label>
+                            <div class="col-xs-6">
+                                <input type="number" class="form-control" placeholder="Afstand (m)" id="hspl4">
+                            </div>
+                        </div>
+                        <div class="step2A" style="display:none">
+                            <div class="form-group">
+                                <div class="col-xs-offset-2 col-xs-8">
+                                    <img id="myImage" class="img-responsive">
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="control-label col-xs-6" for="k1">K1</label>
+                                <div class="col-xs-6">
+                                    <p class="form-control-static" id="k1"></p>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="control-label col-xs-6" for="k2">K2</label>
+                                <div class="col-xs-6">
+                                    <p class="form-control-static" id="k2"></p>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <button class="col-xs-offset-6 col-xs-6 btn btn-primary" onClick="selectMastA()">Selecteer Mast</button>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="panel-footer">
+                        <button class="btn btn-primary" onClick="EvaluateHSPlStep1()">Bereken</button>
+                    </div>
+                </div>
+            </div>
+            <div class="panel panel-default">
+                <div class="panel-heading">
+                    <h4 class="panel-title">
+          <a data-toggle="collapse" data-parent="#accordion" href="#collapse2">HSP-kabel (hoogspanningskabel)</a>
+        </h4>
+                </div>
+                <div id="collapse2" class="panel-collapse collapse">
+                    <div class="panel-body">
+                        <div class="form-group">
+                            <label class="control-label col-xs-6">Leiding ge&iuml;soleerd opgesteld?</label>
+                            <div class="col-xs-6">
+                                <select class="form-control" id="hspk1">
+                                    <option>Ja</option>
+                                    <option>Nee</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="control-label col-xs-6">Parallelloop</label>
+                            <div class="col-xs-6">
+                                <input type="number" class="form-control" placeholder="Afstand (km)" id="hspk2">
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="control-label col-xs-6">Hart-op-hart</label>
+                            <div class="col-xs-6">
+                                <input type="number" class="form-control" placeholder="Afstand (m)" id="hspk3">
+                            </div>
+                        </div>
+                        <div class="form-group step2D" style="display:none">
+                            <label class="control-label col-xs-6">Aarding kabelsysteem</label>
+                            <div class="col-xs-6">
+                                <input type="number" class="form-control" placeholder="Afstand (m)" id="hspk4">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="panel-footer">
+                        <button class="btn btn-primary" onClick="EvaluateHSPkStep1()">Bereken</button>
+                    </div>
+                </div>
+            </div>
+            <div class="panel panel-default">
+                <div class="panel-heading">
+                    <h4 class="panel-title">
+          <a data-toggle="collapse" data-parent="#accordion" href="#collapse3">HSP-station (hoogspanningsstation)</a>
+        </h4>
+                </div>
+                <div id="collapse3" class="panel-collapse collapse">
+                    <div class="panel-body">
+                        <div class="form-group">
+                            <label class="control-label col-xs-6">Leiding ge&iuml;soleerd opgesteld?</label>
+                            <div class="col-xs-6">
+                                <select class="form-control" id="hsps1">
+                                    <option>Ja</option>
+                                    <option>Nee</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="control-label col-xs-6">Afstand langste parallelle zijde van het HSP station</label>
+                            <div class="col-xs-6">
+                                <input type="number" class="form-control" placeholder="Afstand (m)" id="hsps2">
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="control-label col-xs-6">Afstand tot hekwerk HSP station</label>
+                            <div class="col-xs-6">
+                                <input type="number" class="form-control" placeholder="Afstand (m)" id="hsps3">
+                            </div>
+                        </div>
+                        <div class="form-group step2F" style="display:none">
+                            <label class="control-label col-xs-6">Omtrek hekwerk HSP station</label>
+                            <div class="col-xs-6">
+                                <input type="number" class="form-control" placeholder="Omtrek (m)" id="hsps4">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="panel-footer">
+                        <button class="btn btn-primary" onClick="EvaluateHSPsStep1()">Bereken</button>
+                    </div>
+                </div>
+            </div>
+            <div class="panel panel-default">
+                <div class="panel-heading">
+                    <h4 class="panel-title">
+          <a data-toggle="collapse" data-parent="#accordion" href="#collapse4">TEV-systeem (tractie-energievoorziening)</a>
+        </h4>
+                </div>
+                <div id="collapse4" class="panel-collapse collapse">
+                    <div class="panel-body">
+                        <div class="form-group">
+                            <label class="control-label col-xs-6">Leiding ge&iuml;soleerd opgesteld?</label>
+                            <div class="col-xs-6">
+                                <select class="form-control" id="tev1">
+                                    <option>Ja</option>
+                                    <option>Nee</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="control-label col-xs-6">Parallelloop</label>
+                            <div class="col-xs-6">
+                                <input type="number" class="form-control" placeholder="Afstand (km)" id="tev2">
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="control-label col-xs-6">Hart-op-hart buitenste spoor</label>
+                            <div class="col-xs-6">
+                                <input type="number" class="form-control" placeholder="Afstand (m)" id="tev3">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="panel-footer">
+                        <button class="btn btn-primary" onClick="EvaluateHSPlStep1()">Bereken</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+    <!-- Modal -->
+    <div class="modal fade" data-backdrop="static" id="myModal1" role="dialog">
+        <div class="container">
+            <div class="modal-dialog">
+                <!-- Modal content-->
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal">&times;</button>
+                        <h4 class="modal-title">Selecteer Type Mast</h4>
+                    </div>
+                    <div class="modal-body">
+                        <div class="row" id="placeholder">
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+
+
+        <!-- Bootstrap core JavaScript
+    =====================================================================-->
+        <!-- Placed at the end of the document so the pages load faster -->
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+        <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
+        <!-- Scripts used for calculating -->
+        <script src="js/nen3654.js"></script>
+</body>
+
+</html>

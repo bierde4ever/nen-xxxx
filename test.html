@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <style>
+        #menu{
+            float: left;
+            margin-right: 20px;
+        }
+        #content{
+            float:left
+        }
+        .sep{
+            clear:both;
+        }
+        .test1, .test2{
+            float: left;
+            margin-right: 20px;
+        }
+        .test3{
+            float: right;
+        }
+        .test1{
+            background-color: tomato;
+            width:20%;
+            text-align: left;
+        }
+        .test2{
+            background-color: greenyellow;
+            width: 50%;
+            word-wrap:break-word;
+        }
+        .test3{
+            background-color: yellow;
+        }
+        .container{
+            width: 800px;
+            margin: 0 auto;
+            background-color: bisque
+        }
+        
+        div.box{
+            border: 2px solid yellow;
+            padding: 0;
+            margin-top: 50px;
+            background-color: lightgrey;
+        }
+
+        ul{
+            border: 1px solid red;
+            /*padding: 0px;*/
+            list-style: inside;
+        }
+
+        li{
+            border: 1px solid black;
+            margin: 5px 0 0 0px;
+            padding: 0 0 0 px;
+        }
+    </style>
+</head>
+<body>
+<div class="container">
+    <div>
+        <div id="header">
+            This is the page header
+        </div>
+        <div id="menu">
+            Menu links goes in here
+        </div>
+        <div id="content">
+            The page content goes in this div <br>
+            Extra 
+        </div>
+        <div class="sep"></div>
+    </div>
+    <div style="background-color:blue; border:3px solid red; padding: 20px; margin: 5px">
+        <div class="test1">
+            The page content goes in this div
+        </div>
+        <div class="test2">
+            The page content goes in this div lalalalalallalallalllalallalallallallallallalallallalllllkkllklklklklklklklklklkkkkkkkkkkkklklklklkkkkkk
+        </div>
+        <div class="test3">
+            The page content <br>goes in this div
+        </div>
+        <div class="sep"></div>
+    </div>
+    <div>
+        <div class="test1">
+            The page content goes in this div
+        </div>
+        <div class="test2">
+            The page content goes in this div
+        </div>
+        <div class="test3">
+            The page content goes in this div
+        </div>
+        <div class="sep"></div>
+    </div>
+    <div>
+        <div class="box">
+            <ul>
+                <li>eerste list item, l l l l l l l l l l l l l l l l l l l l l l l l l l l l l l l l l l l l l l l l l l l l l l l l l l l l l l l l l l l l</li>
+                <li>tweede</li>
+                <li>3de list item</li>
+            </ul>
+        </div>
+    </div>
+</div>
+</body>
+</html>

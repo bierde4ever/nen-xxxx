@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>NEN 3654 KB</title>
+    <!-- Bootstrap core CSS -->
+    <link rel="stylesheet" href="css/bootstrap.min.css">
+    <!-- Overrides of bootstrap-css and additional styles -->
+    <link rel="stylesheet" href="css/styles.css">
+</head>
+
+<body>
+    <nav class="navbar navbar-default navbar-fixed-top">
+        <div class="container">
+            <div class="navbar-header">
+                <a class="navbar-brand" href="#">NEN 3654 KB bij Hoogspanning</a>
+            </div>
+        </div>
+    </nav>
+    <div>
+        <h4>Type hoogspanningsverbinding</h4>
+        <input type="checkbox" id="hoogspanningslijn">
+        <label for="hoogspanningslijn">HSP-lijn (hoogspanningslijn)</label>
+        <input type="checkbox" id="hoogspanningskabel">
+        <label for="hoogspanningskabel">HSP-kabel (hoogspanningskabel)</label>
+        <input type="checkbox" id="hoogspanningsstation">
+        <label for="hoogspanningsstation">HSP-station (hoogspanningsstation)</label>
+        <input type="checkbox" id="tractieenergievoorziening">
+        <label for="tractieenergievoorziening">TEV-systeem (tractie-energievoorziening)</label>
+    </div>
+
+    <!-- Modal -->
+    <div class="modal fade" data-backdrop="static" id="myModal1" role="dialog">
+        <div class="container">
+            
+            <div class="modal-dialog">
+
+                <!-- Modal content-->
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal">&times;</button>
+                        <h4 class="modal-title">Unity Check Berekening</h4>
+                    </div>
+                    <div class="modal-body">
+                        <div class="col-xs-offset-2 col-xs-8">
+                            <img id="myImage" class="img-responsive">
+                        </div>
+                        <div class="form-horizontal">
+                            <div class="form-group">
+                                <label class="control-label col-xs-4" for="k1">K1</label>
+                                <div class="col-xs-8">
+                                    <p class="form-control-static" id="k1"></p>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="control-label col-xs-4" for="k2">K2</label>
+                                <div class="col-xs-8">
+                                    <p class="form-control-static" id="k2"></p>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="control-label col-xs-4" for="lengte">Lengte parallelloop</label>
+                                <div class="col-xs-8">
+                                    <input type="number" class="form-control" id="lengte">
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="control-label col-xs-4" for="hart">Hartafstand</label>
+                                <div class="col-xs-8">
+                                    <input type="number" class="form-control" id="hart">
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="control-label col-xs-4" for="middle">Unity Check UC:</label>
+                                <div class="col-xs-8">
+                                    <output type="number" class="form-control" id="middle"></output>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <div class="col-xs-offset-4 col-xs-8">
+                                    <button class="btn btn-primary" onClick="UnityCheck(lengte.value,hart.value)">Bereken</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+    <div class="row" id="placeholder">
+    </div>
+    <footer class="navbar navbar-default navbar-fixed-bottom">
+        <div class="container">
+            <p class="navbar-text" id="voetje"></p>
+        </div>
+    </footer>
+    <!-- Bootstrap core JavaScript
+    =====================================================================-->
+    <!-- Placed at the end of the document so the pages load faster -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+    <script src="js/bootstrap.min.js"></script>
+    <!-- Scripts used for calculating -->
+    <script src="js/nen3654.js"></script>
+</body>
+
+</html>
