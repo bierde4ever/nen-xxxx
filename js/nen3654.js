@@ -36,39 +36,40 @@ function UnityCheck(_l, _a, _k1, _k2) {
 function LoadJSON() {
     $.getJSON('../data.json', function (data) {
         var output = "";
-        for (var i in data.mastbeelden) {
-            output += '<div class="col-xs-12">';
-            output += '<img src="' + data.mastbeelden[i].imagesrc
-            + '" class="img-responsive"'
-            + ' data-code="' + data.mastbeelden[i].code + '"'
-            + ' data-k1="' + data.mastbeelden[i].k1.normaal + '"'
-            + ' data-k2="' + data.mastbeelden[i].k2.normaal + '"'
-            + ' data-k1normaal="' + data.mastbeelden[i].k1.normaal + '"'
-            + ' data-k2normaal="' + data.mastbeelden[i].k2.normaal + '"'
-            + ' data-k1corrosie="' + data.mastbeelden[i].k1.corrosie + '"'
-            + ' data-k2corrosie="' + data.mastbeelden[i].k2.corrosie + '"'
-            + ' data-k1eenfasekortsluiting="' + data.mastbeelden[i].k1.eenfasekortsluiting + '"'
-            + ' data-k2eenfasekortsluiting="' + data.mastbeelden[i].k2.eenfasekortsluiting + '"'
-            + ' data-k1onderhoud="' + data.mastbeelden[i].k1.onderhoud + '"'
-            + ' data-k2onderhoud="' + data.mastbeelden[i].k2.onderhoud + '"'
-            + ' data-hoogte="' + data.mastbeelden[i].hoogte + '"'
-            + ' width="300" onClick="selectMast(this)">';
-            output += '</div>';
-        }
+        $.each(data, function (i, mastbeelden) {
+            $.each(mastbeelden, function (x, mastbeeld) {
+                output += '<div class="col-xs-12">';
+                output += '<img src="' + mastbeeld.imagesrc
+                + '" class="img-responsive"'
+                + ' data-code="' + mastbeeld.code + '"'
+                + ' data-k1="' + mastbeeld.k1.normaal + '"'
+                + ' data-k2="' + mastbeeld.k2.normaal + '"'
+                + ' data-k1normaal="' + mastbeeld.k1.normaal + '"'
+                + ' data-k2normaal="' + mastbeeld.k2.normaal + '"'
+                + ' data-k1corrosie="' + mastbeeld.k1.corrosie + '"'
+                + ' data-k2corrosie="' + mastbeeld.k2.corrosie + '"'
+                + ' data-k1eenfasekortsluiting="' + mastbeeld.k1.eenfasekortsluiting + '"'
+                + ' data-k2eenfasekortsluiting="' + mastbeeld.k2.eenfasekortsluiting + '"'
+                + ' data-k1onderhoud="' + mastbeeld.k1.onderhoud + '"'
+                + ' data-k2onderhoud="' + mastbeeld.k2.onderhoud + '"'
+                + ' data-hoogte="' + mastbeeld.hoogte + '"'
+                + ' width="300" onClick="selectMast(this)">';
+                output += '</div>';
+            });
+        });
         $('#placeholder').html(output);
-        //document.getElementById("placeholder").innerHTML = output;
     });
 }
 
 function selectMast(img) {
+    var clonedImage = $(img).clone(false);
+    $(clonedImage).attr("id", "myImage");
     var image = $('#myImage');
-    $(img).attr("id", "myImage");
-    image.replaceWith(img);
+    image.replaceWith(clonedImage);
     $('#k1').html($(img).data('k1'));
     $('#k1').data('k1', $(img).data('k1'));
     $('#k2').html($(img).data('k2'));
     $('#k2').data('k2', $(img).data('k2'));
-    $('.step2A2').show();
     $("#myModal1").modal('hide');
 }
 function selectMastA() {
@@ -87,6 +88,16 @@ var messages = {
     'mechanischeb_ok': 'Mechanische be&iuml;nvloeding: OK<br>',
     'mechanischeb_nok': 'Mechanische be&iuml;nvloeding: Niet OK<br>'
 };
+
+
+$("#hspl1").change(function () {
+    if (this.value == 'Nee') {
+        $(".petersburghspl").show();
+    }
+    else {
+        $(".petersburghspl").hide();
+    }
+});
 
 function EvaluateHSPlStep1() {
     var isolated = $('#hspl1').val();
@@ -139,14 +150,28 @@ function CheckWeerstandHSPlijn(hartophart) {
     }
 }
 function CheckInductieveHSPlijn() {
-    // if Formule van Petersburgconsultants < 1 {
-    //     $('#outputValues').append(messages.inductieveb_ok);
-    // }
-    // else{
-    //     $('#outputValues').append(messages.inductieveb_nok);
-    //     $('#outputValues').append("<em>Toelichting: wisselstroomcorrosie.</em>");
-    //     // ga naar stap 2(C)
-    // }
+    var petersburg = $('#hspl5').val();
+    if (!isValueValid(petersburg)) {
+        $('#outputValues').append("Ongeldige invoer: Vul waarde in voor formule Petersburg<br>");
+    }
+    else {
+        if (petersburg < 1) {
+            $('#outputValues').append(messages.inductieveb_ok);
+        }
+        else {
+            $('#outputValues').append(messages.inductieveb_nok);
+            $('#outputValues').append("<em>Toelichting: wisselstroomcorrosie.</em><br>");
+            if ($(".step2A").is(":visible")) {
+                EvaluateStep2C();
+            }
+            else {
+                $('#myImage').replaceWith('<img id="myImage" class="img-responsive">');
+                $('#k1').empty();
+                $('#k2').empty();
+                $(".step2A").show();
+            }
+        }
+    }
 }
 function CheckMechanischHSPlijn(hartophart) {
     if (hartophart < 58.9) {
@@ -156,7 +181,7 @@ function CheckMechanischHSPlijn(hartophart) {
         }
         else {
             $('#hspl4').val('');
-            $('#myImage').attr('src', '');
+            $('#myImage').replaceWith('<img id="myImage" class="img-responsive">');
             $('#k1').empty();
             $('#k2').empty();
             $(".step2A").show();
@@ -169,12 +194,94 @@ function CheckMechanischHSPlijn(hartophart) {
         $(".step2A").hide();
         $(".afstandtotmast").hide();
         $('#hspl4').val('');
-        $('#myImage').attr('src', '');
+        $('#myImage').replaceWith('<img id="myImage" class="img-responsive">');
         $('#k1').empty();
         $('#k2').empty();
         $('#outputValues').append(messages.mechanischeb_ok);
     }
 }
+function EvaluateStep2A() {
+    var afstandTotMast = $('#hspl4').val();
+    var hoogteMast = $('#myImage').data("hoogte");
+    if (!isValueValid(afstandTotMast)) {
+        $('#outputValues').append("<strong>Ongeldige invoer: Vul waarde voor afstand tot mast in.</strong><br>");
+    }
+    else {
+        if (!isValueValid(hoogteMast)) {
+            $('#outputValues').append("<strong>Ongeldige invoer: Selecteer een mast type.</strong><br>");
+        }
+        else {
+            if (afstandTotMast < hoogteMast) {
+                $('#outputValues').append(messages.mechanischeb_nok);
+                $('#outputValues').append('<em>Toelichting: mechanische beschadiging. Treed in overleg</em><br>');
+            }
+            else {
+                $('#outputValues').append(messages.mechanischeb_ok);
+            }
+        }
+    }
+}
+
+function EvaluateStep2B() {
+    var afstandTotMast = $('#hspl4').val();
+    if (!isValueValid(afstandTotMast)) {
+        $('#outputValues').append("<strong>Ongeldige invoer: Vul waarde in bij afstand tot mast.</strong><br>");
+    }
+    else {
+        if (afstandTotMast < 50) {
+            $('#outputValues').append(messages.weerstandsb_nok);
+            $('#outputValues').append('<em>Toelichting: overbruggingsspanning, aanraakspanning en doorslag</em><br>');
+            // ga naar stap 3(VI)
+            Step3VI();
+        }
+        else {
+            $('#outputValues').append(messages.weerstandsb_ok);
+        }
+    }
+}
+
+function EvaluateStep2C(parallelloop, hartophart) {
+    // Kies type mast uit schema/foto
+    var hoogteMast = $('#myImage').data("hoogte");
+    if (!isValueValid(hoogteMast)) {
+        $('#outputValues').append("Ongeldige invoer: Selecteer een mast.<br>");
+        return;
+    }
+    var image = $('#myImage');
+    var mast = {
+        k1: {
+            normaal: image.data("k1normaal"),
+            corrosie: image.data("k1corrosie"),
+            eenfasekortsluiting: image.data("k1eenfasekortsluiting"),
+            onderhoud: image.data("k1onderhoud")
+        },
+        k2: {
+            normaal: image.data("k2normaal"),
+            corrosie: image.data("k2corrosie"),
+            eenfasekortsluiting: image.data("k2eenfasekortsluiting"),
+            onderhoud: image.data("k2onderhoud")
+        }
+    };
+
+    var ucnormaal = UnityCheck(parallelloop, hartophart, mast.k1.normaal, mast.k2.normaal);
+    var uccorrosie = UnityCheck(parallelloop, hartophart, mast.k1.corrosie, mast.k2.corrosie);
+    var uceenfasekortsluiting = UnityCheck(parallelloop, hartophart, mast.k1.eenfasekortsluiting, mast.k2.eenfasekortsluiting);
+    var uconderhoud = UnityCheck(parallelloop, hartophart, mast.k1.onderhoud, mast.k2.onderhoud);
+    if (ucnormaal < 1 && uccorrosie < 1 && uceenfasekortsluiting < 1 && uconderhoud < 1) {
+        $('#outputValues').append(messages.inductieveb_ok);
+    }
+    else {
+        $('#outputValues').append(messages.inductieveb_nok);
+        if (uccorrosie >= 1) {
+            $('#outputValues').append('<em>Toelichting: wisselstroomcorrosie. Treed in overleg</em><br>');
+        }
+        else {
+            $('#outputValues').append('<em>Toelichting: aanraakspanning. Treed in overleg</em><br>');
+        }
+        Step3VII();
+    }
+}
+
 
 function EvaluateHSPkStep1() {
     var isolated = $('#hspk1').val();
@@ -183,7 +290,7 @@ function EvaluateHSPkStep1() {
 
     $('#outputValues').empty();
     if (!isValueValid(distance2)) {
-        $('#outputValues').append("Ongeldige invoer");
+        $('#outputValues').append("Ongeldige invoer<br>");
     }
     else {
         $('#outputValues').append(messages.capacitieveb_ok);
@@ -347,73 +454,6 @@ function CheckInductieveTEV() {
     //     $('#outputValues').append("<em>Toelichting: wisselstroomcorrosie.</em>");
     //     // ga naar stap 2(H)
     // }
-}
-
-function EvaluateStep2A() {
-    var afstandTotMast = $('#hspl4').val();
-    var hoogteMast = $('#myImage').data("hoogte");
-    if (!isValueValid(afstandTotMast) || !isValueValid(hoogteMast)) {
-        $('#outputValues').append("Ongeldige invoer");
-    }
-    else {
-        if (afstandTotMast < hoogteMast) {
-            $('#outputValues').append(messages.mechanischeb_nok);
-            $('#outputValues').append('<em>Toelichting: mechanische beschadiging. Treed in overleg</em><br>');
-        }
-        else {
-            $('#outputValues').append(messages.mechanischeb_ok);
-        }
-    }
-}
-
-function EvaluateStep2B() {
-    var afstandTotMast = $('#hspl4').val();
-    if (afstandTotMast < 50) {
-        $('#outputValues').append(messages.mechanischeb_nok);
-        $('#outputValues').append('<em>Toelichting: overbruggingsspanning, aanraakspanning en doorslag</em><br>');
-        // ga naar stap 3(VI)
-        Step3VI();
-    }
-    else {
-        $('#outputValues').append(messages.mechanischeb_ok);
-    }
-}
-
-function EvaluateStep2C(parallelloop, hartophart) {
-    // Kies type mast uit schema/foto
-    var image = $('#myImage');
-    var mast = {
-       k1: {
-           normaal: image.data("k1normaal"),
-           corrosie: image.data("k1corrosie"),
-           eenfasekortsluiting: image.data("k1eenfasekortsluiting"),
-           onderhoud: image.data("k1onderhoud")
-       },
-       k2: {
-           normaal: image.data("k2normaal"),
-           corrosie: image.data("k2corrosie"),
-           eenfasekortsluiting: image.data("k2eenfasekortsluiting"),
-           onderhoud: image.data("k2onderhoud")
-       }
-    }; 
-    
-    var ucnormaal = UnityCheck(parallelloop, hartophart, mast.k1.normaal, mast.k2.normaal);
-    var uccorrosie = UnityCheck(parallelloop, hartophart, mast.k1.corrosie, mast.k2.corrosie);
-    var uceenfasekortsluiting = UnityCheck(parallelloop, hartophart, mast.k1.eenfasekortsluiting, mast.k2.eenfasekortsluiting);
-    var uconderhoud = UnityCheck(parallelloop, hartophart, mast.k1.onderhoud, mast.k2.onderhoud);
-    if (ucnormaal < 1 && uccorrosie < 1 && uceenfasekortsluiting < 1 && uconderhoud < 1) {
-        $('#outputValues').append(messages.inductieveb_ok);
-    }
-    else {
-        $('#outputValues').append(messages.inductieveb_nok);
-        if(uccorrosie >= 1){
-              $('#outputValues').append('<em>Toelichting: wisselstroomcorrosie. Treed in overleg</em><br>');
-        }
-        else{
-              $('#outputValues').append('<em>Toelichting: aanraakspanning. Treed in overleg</em><br>');
-        }
-        Step3VII();
-    }
 }
 
 function EvaluateStep2D() {

@@ -21,16 +21,16 @@
             "imagesrc": "images/mastbeeld.PNG",
             "code": "L02",
             "k1":{
-                "normaal": 12,
-                "corrosie": 20,
-                "eenfasekortsluiting": 30,
-                "onderhoud": 40
+                "normaal": 3.825,
+                "corrosie": 2.391,
+                "eenfasekortsluiting": 8.608,
+                "onderhoud": 5.688
             },
             "k2":{
-                "normaal": 13,
-                "corrosie": 20,
-                "eenfasekortsluiting": 30,
-                "onderhoud": 40
+                "normaal": 427,
+                "corrosie": 427,
+                "eenfasekortsluiting": 1697,
+                "onderhoud": 550
             },
             "hoogte": 48
         },
@@ -38,16 +38,16 @@
             "imagesrc": "images/mastbeeld.PNG",
             "code": "L03",
             "k1":{
-                "normaal": 14,
-                "corrosie": 20,
-                "eenfasekortsluiting": 30,
-                "onderhoud": 40
+                "normaal": 7.665,
+                "corrosie": 4.794,
+                "eenfasekortsluiting": 6.689,
+                "onderhoud": 2.515 
             },
             "k2":{
-                "normaal": 15,
-                "corrosie": 20,
-                "eenfasekortsluiting": 30,
-                "onderhoud": 40
+                "normaal": 435,
+                "corrosie": 434,
+                "eenfasekortsluiting": 2032,
+                "onderhoud": 1018
             },
             "hoogte": 48
         },
@@ -55,16 +55,16 @@
             "imagesrc": "images/mastbeeld.PNG",
             "code": "L04",
             "k1":{
-                "normaal": 16,
-                "corrosie": 20,
-                "eenfasekortsluiting": 30,
-                "onderhoud": 40
+                "normaal": 9.368,
+                "corrosie": 5.850,
+                "eenfasekortsluiting": 4.148,
+                "onderhoud": 12.168
             },
             "k2":{
-                "normaal": 17,
-                "corrosie": 20,
-                "eenfasekortsluiting": 30,
-                "onderhoud": 40
+                "normaal": 415,
+                "corrosie": 416,
+                "eenfasekortsluiting": 1921,
+                "onderhoud": 424
             },
             "hoogte": 48
         },
@@ -72,16 +72,16 @@
             "imagesrc": "images/mastbeeld.PNG",
             "code": "L05",
             "k1":{
-                "normaal": 18,
-                "corrosie": 20,
-                "eenfasekortsluiting": 30,
-                "onderhoud": 40
+                "normaal": 8.976,
+                "corrosie": 3.360,
+                "eenfasekortsluiting": 5.951,
+                "onderhoud": 5.984
             },
             "k2":{
-                "normaal": 19,
-                "corrosie": 20,
-                "eenfasekortsluiting": 30,
-                "onderhoud": 40
+                "normaal": 401,
+                "corrosie": 403,
+                "eenfasekortsluiting": 2177,
+                "onderhoud": 441
             },
             "hoogte": 48
         },
@@ -89,16 +89,16 @@
             "imagesrc": "images/mastbeeld.PNG",
             "code": "L06",
             "k1":{
-                "normaal": 20,
-                "corrosie": 20,
-                "eenfasekortsluiting": 30,
-                "onderhoud": 40
+                "normaal": 6.625,
+                "corrosie": 4.138,
+                "eenfasekortsluiting": 8.037,
+                "onderhoud": 6.625
             },
             "k2":{
-                "normaal": 21,
-                "corrosie": 20,
-                "eenfasekortsluiting": 30,
-                "onderhoud": 40
+                "normaal": 451,
+                "corrosie": 451,
+                "eenfasekortsluiting": 1588,
+                "onderhoud": 451
             },
             "hoogte": 48
         }
