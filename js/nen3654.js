@@ -1,14 +1,55 @@
 $(document).ready(function () {
     LoadJSON();
-    // $('#myModal1').on('show.bs.modal', function (e) {
-    //     alert($(e.relatedTarget).data('l1'));
-    // });
-    // $('#placeholder img').on('click', function(){
-    // $('#myModal1').modal('toggle', $(this))
-    //         selectMastbeeld(this);
-    //     });
+
+    initHSPlijn();
+
+    $('#hspl1').change(function () {
+        if ($('#hspl1').val() === 'Ja') {
+            $('#petersburghspl').hide();
+            $('#parallelloop-hsplijn').hide();
+            $('.step2A').hide();
+
+        } else {
+            $('#petersburghspl').show();
+            $('#parallelloop-hsplijn').show();
+            $('.step2A').show();
+        }
+    });
+
+    $('#hspl3').change(function () {
+        var output = $('#outputValues');
+        if ($('#hspl1').val() === 'Ja') {
+            if ($('#hspl3').val() < 50) {
+                output.append(messages.capacitieveb_nok);
+            } else {
+                output.append(messages.capacitieveb_ok);
+            }
+            if ($('#hspl3').val() < 58.9) {
+                output.append(messages.mechanischeb_nok);
+            } else {
+                output.append(messages.mechanischeb_ok);
+            }
+        } else {
+            if ($('#hspl3').val() < 50) {
+                output.append(messages.weerstandsb_nok);
+            } else {
+                output.append(messages.weerstandsb_ok);
+            }
+            if ($('#hspl3').val() < 58.9) {
+                output.append(messages.mechanischeb_nok);
+            } else {
+                output.append(messages.mechanischeb_ok);
+            }
+        }
+    });
 });
 
+
+function initHSPlijn() {
+    $('#petersburghspl').hide();
+    $('#parallelloop-hsplijn').hide();
+    $('.step2A').hide();
+}
 
 function selectMastbeeld(deze) {
     var src = $(deze).attr('src');
@@ -103,33 +144,43 @@ function EvaluateHSPlStep1() {
     var isolated = $('#hspl1').val();
     var distance1 = $('#hspl2').val();
     var distance2 = $('#hspl3').val();
+    var output = $('#outputValues');
 
-    $('#outputValues').empty();
-    $('#outputValues').append(messages.thermischeb_ok);
+    output.empty();
+    if (!isValueValid(distance1)) {
+        output.append("Ongeldige invoer: Vul correcte waarde in voor Parallelloop.<br>");
+        return;
+    }
+    if (!isValueValid(distance2)) {
+        output.append("Ongeldige invoer: Vul correcte waarde in voor Hart-op-Hart.<br>");
+        return;
+    }
+    output.append(messages.thermischeb_ok);
     if (isolated == 'Ja') {
         $(".step2Totaal").hide();
         //$(".step2C").hide();
-        $('#outputValues').append(messages.weerstandsb_ok);
-        $('#outputValues').append(messages.inductieveb_ok);
+        output.append(messages.weerstandsb_ok);
+        output.append(messages.inductieveb_ok);
         CheckCapacitieveHSPlijn(distance2);
         CheckMechanischHSPlijn(distance2);
     }
     else {
-        $('#outputValues').append(messages.capacitieveb_ok);
+        output.append(messages.capacitieveb_ok);
         CheckWeerstandHSPlijn(distance2);
         CheckInductieveHSPlijn(); // Formules Petersburgconsultants
         CheckMechanischHSPlijn(distance2);
     }
 }
 function CheckCapacitieveHSPlijn(hartophart) {
+    var output = $('#outputValues');
     if (hartophart < 50) {
-        $('#outputValues').append(messages.capacitieveb_nok);
-        $('#outputValues').append("<em>Toelichting: overbruggingsspanning.</em><br>");
+        output.append(messages.capacitieveb_nok);
+        output.append("<em>Toelichting: overbruggingsspanning.</em><br>");
         // ga naar stap 3I
         Step3I();
     }
     else {
-        $('#outputValues').append(messages.capacitieveb_ok);
+        output.append(messages.capacitieveb_ok);
     }
 }
 function CheckWeerstandHSPlijn(hartophart) {
@@ -288,25 +339,26 @@ function EvaluateHSPkStep1() {
     var distance1 = $('#hspk2').val();
     var distance2 = $('#hspk3').val();
 
-    $('#outputValues').empty();
+    var output = $('#outputValues');
+
+    output.empty();
     if (!isValueValid(distance2)) {
-        $('#outputValues').append("Ongeldige invoer<br>");
+        output.append("Ongeldige invoer: Hart op Hart afstand.<br>");
+        return;
+    }
+    output.append(messages.capacitieveb_ok);
+    output.append(messages.mechanischeb_ok);
+    if (isolated == 'Ja') {
+        $(".step2D").hide();
+        //$(".step2E").hide();
+        output.append(messages.weerstandsb_ok);
+        output.append(messages.inductieveb_ok);
+        output.append(messages.thermischeb_ok);
     }
     else {
-        $('#outputValues').append(messages.capacitieveb_ok);
-        $('#outputValues').append(messages.mechanischeb_ok);
-        if (isolated == 'Ja') {
-            $(".step2D").hide();
-            //$(".step2E").hide();
-            $('#outputValues').append(messages.weerstandsb_ok);
-            $('#outputValues').append(messages.inductieveb_ok);
-            $('#outputValues').append(messages.thermischeb_ok);
-        }
-        else {
-            CheckThermischHSPkabel(distance2);
-            CheckWeerstandHSPkabel(distance2);
-            CheckInductieveHSPkabel();          // Formule Petersburgconsultants
-        }
+        CheckThermischHSPkabel(distance2);
+        CheckWeerstandHSPkabel(distance2);
+        CheckInductieveHSPkabel();          // Formule Petersburgconsultants
     }
 }
 function CheckThermischHSPkabel(hartophart) {
