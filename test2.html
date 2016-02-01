@@ -50,32 +50,16 @@
                                 <input type="number" class="form-control" placeholder="Afstand (m)" id="hspl4">
                             </div>
                         </div>
-                        <div class="form-group petersburghspl" style="display:none">
-                            <label class="control-label col-xs-6">Formule Petersburg</label>
-                            <div class="col-xs-6">
-                                <input type="number" class="form-control" placeholder="" id="hspl5">
-                            </div>
-                        </div>
                         <div class="step2A" style="display:none">
                             <div class="form-group">
-                                <div class="col-xs-offset-2 col-xs-8">
+                                <div class="col-xs-6">
                                     <img id="myImage" class="img-responsive">
                                 </div>
-                            </div>
-                            <div class="form-group">
-                                <label class="control-label col-xs-6" for="k1">K1</label>
-                                <div class="col-xs-6">
-                                    <p class="form-control-static" id="k1"></p>
+                                <div class="col-xs-6" id="mastdata">
                                 </div>
                             </div>
                             <div class="form-group">
-                                <label class="control-label col-xs-6" for="k2">K2</label>
-                                <div class="col-xs-6">
-                                    <p class="form-control-static" id="k2"></p>
-                                </div>
-                            </div>
-                            <div class="form-group">
-                                <button class="col-xs-offset-6 col-xs-6 btn btn-primary" onClick="selectMastA()">Selecteer Mast</button>
+                                <button class="col-xs-offset-6 col-xs-6 btn btn-primary" id="selecteerMast">Selecteer Mast</button>
                             </div>
                         </div>
                     </div>
@@ -87,11 +71,13 @@
             <div class="panel panel-default">
                 <div class="panel-heading">
                     <h4 class="panel-title">
-          <a data-toggle="collapse" data-parent="#accordion" href="#collapse2">HSP-kabel (hoogspanningskabel)</a>
-        </h4>
+                        <a data-toggle="collapse" data-parent="#accordion" href="#collapse2">HSP-kabel (hoogspanningskabel)</a>
+                    </h4>
                 </div>
                 <div id="collapse2" class="panel-collapse collapse">
                     <div class="panel-body">
+                        <div class="form-group" id="outputvalues-hspk">
+                        </div>
                         <div class="form-group">
                             <label class="control-label col-xs-6">Leiding ge&iuml;soleerd opgesteld?</label>
                             <div class="col-xs-6">
@@ -101,13 +87,13 @@
                                 </select>
                             </div>
                         </div>
-                        <div class="form-group">
+                        <div class="form-group" id="parallelloop-hspk">
                             <label class="control-label col-xs-6">Parallelloop</label>
                             <div class="col-xs-6">
                                 <input type="number" class="form-control" placeholder="Afstand (km)" id="hspk2">
                             </div>
                         </div>
-                        <div class="form-group">
+                        <div class="form-group" id="hartophart-hspk">
                             <label class="control-label col-xs-6">Hart-op-hart</label>
                             <div class="col-xs-6">
                                 <input type="number" class="form-control" placeholder="Afstand (m)" id="hspk3">
@@ -117,6 +103,17 @@
                             <label class="control-label col-xs-6">Aarding kabelsysteem</label>
                             <div class="col-xs-6">
                                 <input type="number" class="form-control" placeholder="Afstand (m)" id="hspk4">
+                            </div>
+                        </div>
+                        <div class="form-group step2E" style="display:none">
+                            <label class="control-label col-xs-6">Ligging kabel</label>
+                            <div class="col-xs-6">
+                                <select class="form-control" id="hspk5">
+                                    <option data-code="K01" data-k1normaal="0.248" data-k2normaal="379" data-k1corrosie="0.153" data-k2corrosie="379" data-k1eenfasekortsluiting="19.115" data-k2eenfasekortsluiting="1296" data-k1onderhoud="0.248" data-k2onderhoud="379">Kabel in plat vlak - 10 -50 kV</option>
+                                    <option data-code="K02" data-k1normaal="0.528" data-k2normaal="383" data-k1corrosie="0.330" data-k2corrosie="370" data-k1eenfasekortsluiting="10.296" data-k2eenfasekortsluiting="1290" data-k1onderhoud="0.528" data-k2onderhoud="383">Kabel in plat vlak - 150 -400 kV</option>
+                                    <option data-code="K03" data-k1normaal="0.043" data-k2normaal="344" data-k1corrosie="0.025" data-k2corrosie="400" data-k1eenfasekortsluiting="19.355" data-k2eenfasekortsluiting="1276" data-k1onderhoud="0.043" data-k2onderhoud="344">Kabel in driehoeksligging - 10 -50 kV</option>
+                                    <option data-code="K04" data-k1normaal="0.128" data-k2normaal="400" data-k1corrosie="0.080" data-k2corrosie="400" data-k1eenfasekortsluiting="10.388" data-k2eenfasekortsluiting="1276" data-k1onderhoud="0.128" data-k2onderhoud="400">Kabel in driehoeksligging - 150 -400 kV</option>
+                                </select>
                             </div>
                         </div>
                     </div>
@@ -133,6 +130,8 @@
                 </div>
                 <div id="collapse3" class="panel-collapse collapse">
                     <div class="panel-body">
+                        <div class="form-group" id="outputvalues-hsps">
+                        </div>
                         <div class="form-group">
                             <label class="control-label col-xs-6">Leiding ge&iuml;soleerd opgesteld?</label>
                             <div class="col-xs-6">
@@ -174,6 +173,8 @@
                 </div>
                 <div id="collapse4" class="panel-collapse collapse">
                     <div class="panel-body">
+                        <div class="form-group" id="outputvalues-tev">
+                        </div>
                         <div class="form-group">
                             <label class="control-label col-xs-6">Leiding ge&iuml;soleerd opgesteld?</label>
                             <div class="col-xs-6">
@@ -195,6 +196,16 @@
                                 <input type="number" class="form-control" placeholder="Afstand (m)" id="tev3">
                             </div>
                         </div>
+                        <div class="form-group step2H" style="display:none">
+                            <label class="control-label col-xs-6">Type TEV</label>
+                            <div class="col-xs-6">
+                                <select class="form-control" id="tev4">
+                                    <option data-code="T01" data-k1normaal="0.191" data-k2normaal="1445" data-k1corrosie="0.033" data-k2corrosie="1445" data-k1eenfasekortsluiting="0.006" data-k2eenfasekortsluiting="1445">TEV Betuweroute (incl. Rotterdamse Havenspoorlijn)</option>
+                                    <option data-code="T02" data-k1normaal="0.108" data-k2normaal="1318" data-k1corrosie="0.024" data-k2corrosie="1318" data-k1eenfasekortsluiting="0.015" data-k2eenfasekortsluiting="1318">TEV HSL-Zuid Noordelije tak (Hoofddorp - Rotterdam)</option>
+                                    <option data-code="T03" data-k1normaal="0.205" data-k2normaal="1230" data-k1corrosie="0.034" data-k2corrosie="1230" data-k1eenfasekortsluiting="0.010" data-k2eenfasekortsluiting="1230">TEV HSL-Zuid Zuidelije tak (Barendrecht - Belgische grens)</option>
+                                </select>
+                            </div>
+                        </div>
                     </div>
                     <div class="panel-footer">
                         <button class="btn btn-primary" onClick="EvaluateHSPlStep1()">Bereken</button>
@@ -203,7 +214,6 @@
             </div>
         </div>
     </div>
-
 
     <!-- Modal -->
     <div class="modal fade" data-backdrop="static" id="myModal1" role="dialog">
