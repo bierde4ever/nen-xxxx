@@ -3,6 +3,8 @@ $(document).ready(function () {
 
     initHSPlijn();
     initHSPkabel();
+    initHSPstation();
+    initTEVsysteem();
 
     $('#selecteerMast').click(selectMastA);
     $('#hspl1').change(hsplLeidingIsolatieChange);
@@ -11,9 +13,19 @@ $(document).ready(function () {
     $('#hspl4').change(hsplAfstandTotMastChange);
 
     $('#hspk1').change(hspkLeidingIsolatieChange);
+    $('#hspk2').change(hspkParallelloopChange);
     $('#hspk3').change(hspkHartOpHartChange);
     $('#hspk4').change(hspkAfstandTotAardingChange);
     $('#hspk5').change(hspkKabelLiggingChange);
+
+    $('#hsps1').change(hspsLeidingIsolatieChange);
+    $('#hsps2').change(hspsAfstandParallelleZijdeChange);
+    $('#hsps3').change(hspsAfstandTotHekwerkChange);
+
+    $('#tev1').change(tevLeidingIsolatieChange);
+    $('#tev2').change(tevParallelloopChange);
+    $('#tev3').change(tevHartOpHartChange);
+    $('#tev4').change(tevTypeTEVChange);
 });
 
 var ERRORS = 0, CAPACITIEVE = 1, WEERSTAND = 2, INDUCTIEVE = 3, THERMISCHE = 4, MECHANISCHE = 5;
@@ -261,16 +273,12 @@ function hspkLeidingIsolatieChange() {
 
 function hspkKabelLiggingChange() {
     EvaluateStep2E();
-    updateOutput("hspk", outputHSPK);
 }
 
 function hspkParallelloopChange() {
-    var parallelloop = $('#hspk2').val();
-    if (!isValueValid(parallelloop)) {
-        outputHSPK[ERRORS] = "<strong>Ongeldige invoer voor Parallelloop</strong><br>";
-        updateOutput("hspk", outputHSPK);
-        return;
-    }
+    EvaluateStep2E();
+}
+function hspkHartOpHartChange() {
     var hartophart = $('#hspk3').val();
     if (!isValueValid(hartophart)) {
         outputHSPK[ERRORS] = "<strong>Ongeldige invoer voor Hart-op-hart</strong><br>";
@@ -278,42 +286,29 @@ function hspkParallelloopChange() {
         return;
     }
     outputHSPK[ERRORS] = undefined;
-}
-function hspkHartOpHartChange() {
-    var hartophart = $('#hspk3').val();
-    if (!isValueValid(hartophart)) {
-        outputHSPK[ERRORS] = "<strong>Ongeldige invoer voor Hart-op-hart</strong><br>";
+    if (hartophart < 10) {
+        outputHSPK[THERMISCHE] = messages.thermischeb_nok;
+        outputHSPK[THERMISCHE] += "<em>Toelichting: opwarming.</em><br>";
+        outputHSPK[THERMISCHE] += Step3II();
     } else {
-        if (hartophart < 10) {
-            outputHSPK[THERMISCHE] = messages.thermischeb_nok;
-            outputHSPK[THERMISCHE] += "<em>Toelichting: opwarming.</em><br>";
-            outputHSPK[THERMISCHE] += Step3II();
-        } else {
-            outputHSPK[THERMISCHE] = messages.thermischeb_ok;
-        }
-        if (hartophart < 30) {
-            outputHSPK[WEERSTAND] = messages.weerstandsb_nok;
-            outputHSPK[WEERSTAND] = "<em>Toelichting: overbruggigsspanning, aanraakspanning en doorslag.</em><br>";
-            // stap 2D        
-            $('.step2D').show();
-            EvaluateStep2D();
-        } else {
-            outputHSPK[WEERSTAND] = messages.weerstandsb_ok;
-            $('.step2D').hide();
-        }
-        var parallelloop = $('#hspk2').val();
-        if (!isValueValid(parallelloop)) {
-            outputHSPK[ERRORS] = "<strong>Ongeldige invoer voor Parallelloop</strong><br>";
-        } else {
-            EvaluateStep2E();
-            outputHSPK[ERRORS] = undefined;
-        }
+        outputHSPK[THERMISCHE] = messages.thermischeb_ok;
     }
-    updateOutput("hspk", outputHSPK);
+    if (hartophart < 30) {
+        outputHSPK[WEERSTAND] = messages.weerstandsb_nok;
+        outputHSPK[WEERSTAND] += "<em>Toelichting: overbruggingsspanning, aanraakspanning en doorslag.</em><br>";
+        // stap 2D        
+        $('.step2D').show();
+        EvaluateStep2D();
+    } else {
+        outputHSPK[WEERSTAND] = messages.weerstandsb_ok;
+        $('.step2D').hide();
+    }
+    EvaluateStep2E();
 }
 
 function hspkAfstandTotAardingChange() {
     EvaluateStep2D();
+    EvaluateStep2E();
 }
 function EvaluateStep2D() {
     var afstandTotAarding = $('#hspk4').val();
@@ -325,7 +320,7 @@ function EvaluateStep2D() {
     outputHSPK[ERRORS] = undefined;
     if (afstandTotAarding < 30) {
         outputHSPK[WEERSTAND] = messages.weerstandsb_nok;
-        outputHSPK[WEERSTAND] += "<em>Toelichting: overbruggingsspanning, aanraakspanning en doorslag.</em>";
+        outputHSPK[WEERSTAND] += "<em>Toelichting: overbruggingsspanning, aanraakspanning en doorslag.</em><br>";
         outputHSPK[WEERSTAND] += Step3VIII();
     }
     else {
@@ -335,6 +330,7 @@ function EvaluateStep2D() {
 }
 
 function EvaluateStep2E() {
+    outputHSPK[INDUCTIEVE] = messages.inductieveb_nok;
     var hartophart = $('#hspk3').val();
     if (!isValueValid(hartophart)) {
         outputHSPK[ERRORS] = "<strong>Ongeldige invoer voor Hart-op-hart</strong><br>";
@@ -382,6 +378,7 @@ function EvaluateStep2E() {
         }
         outputHSPK[INDUCTIEVE] += Step3VII();
     }
+    updateOutput("hspk", outputHSPK);
 }
 function Step3II() {
     var outputValues = '<br>'
@@ -392,10 +389,329 @@ function Step3II() {
         + '</ol>';
     return outputValues;
 }
+
+function Step3VIII() {
+    var outputValues = '<br>'
+        + 'Weerstandsbe&iuml;nvloeding HSP-kabel<br>'
+        + '<ol>'
+        + '<li>Controleer ingevulde gegevens</li>'
+        + '<li>Aarding net</li>'
+        + '<li>Type bekleding leiding</li>'
+        + '<li>Type isolatie kabelmantels (is het GPLK?)</li>'
+        + '</ol>';
+    return outputValues;
+}
+function EvaluateHSPkStep1() {
+}
 // ********************** HSP Kabel - einde *****************************
 // ********************** HSP Station - start *****************************
+function initHSPstation() {
+    outputHSPS[THERMISCHE] = messages.thermischeb_ok;
+    outputHSPS[MECHANISCHE] = messages.mechanischeb_ok;
+    hspsLeidingIsolatieChange();
+}
+function hspsLeidingIsolatieChange() {
+    outputHSPS[ERRORS] = undefined;
+    outputHSPS[WEERSTAND] = undefined;
+    outputHSPS[INDUCTIEVE] = undefined;
+    outputHSPS[CAPACITIEVE] = undefined;
+    if ($('#hsps1').val() === 'Ja') {
+        outputHSPS[WEERSTAND] = messages.weerstandsb_ok;
+        outputHSPS[INDUCTIEVE] = messages.inductieveb_ok;
+        $("#parallellezijde").hide();
+        $('.Step2F').hide();
+    } else {
+        outputHSPS[CAPACITIEVE] = messages.capacitieveb_ok;
+        $("#parallellezijde").show();
+        $('.Step2F').show();
+    }
+    hspsAfstandTotHekwerkChange();
+    updateOutput("hsps", outputHSPS);
+}
+
+function hspsAfstandParallelleZijdeChange() {
+    EvaluateStep2G();
+}
+function hspsAfstandTotHekwerkChange() {
+    var afstandTotHekwerk = $('#hsps3').val();
+    if (!isValueValid(afstandTotHekwerk)) {
+        outputHSPS[ERRORS] = '<strong>Ongeldige invoer voor Afstand tot hekwerk</strong><br>';
+        updateOutput('hsps', outputHSPS);
+        return;
+    }
+    outputHSPS[ERRORS] = undefined;
+    if ($('#hsps1').val() === 'Ja') {
+        if (afstandTotHekwerk < 25) {
+            outputHSPS[CAPACITIEVE] = messages.capacitieveb_nok;
+            outputHSPS[CAPACITIEVE] += "<em>Toelichting: overbruggingsspanning</em><br>";
+            outputHSPS[CAPACITIEVE] += Step3III();
+        } else {
+            outputHSPS[CAPACITIEVE] = messages.capacitieveb_ok;
+        }
+    }
+    else {
+        if (afstandTotHekwerk < 500) {
+            outputHSPS[WEERSTAND] = messages.weerstandsb_nok;
+            outputHSPS[WEERSTAND] += "<em>Toelichting: overbruggingsspanning, aanraakspanning en doorslag</em><br>";
+            // Stap 2F
+            $('.Step2F').show();
+            EvaluateStep2F();
+        } else {
+            outputHSPS[WEERSTAND] = messages.weerstandsb_ok;
+            $('.Step2F').hide();
+        }
+        EvaluateStep2G();
+    }
+    updateOutput('hsps', outputHSPS);
+}
+
+function EvaluateStep2F() {
+    var afstandTotHekwerk = $('#hsps3').val();
+    var omtrekStation = $('#hsps4').val();
+    if (!isValueValid(afstandTotHekwerk)) {
+        outputHSPS[ERRORS] = "<strong>Ongeldige invoer voor Afstand tot hekwerk.</strong><br.";
+        updateOutput("hsps", outputHSPS);
+        return;
+    }
+    if (afstandTotHekwerk < 0.5 * omtrekStation) {
+        outputHSPS[WEERSTAND] = messages.weerstandsb_nok;
+        outputHSPS[WEERSTAND] += '<em>Toelichting: overbruggingsspanning, aanraakspanning en doorslag.</em>';
+        outputHSPS[WEERSTAND] += Step3IX();
+    }
+    else {
+        outputHSPS[WEERSTAND] = messages.weerstandsb_ok;
+    }
+    updateOutput('hsps', outputHSPS);
+}
+function Step3III() {
+    var outputValues = '<br>'
+        + 'Capacitieve be&iuml;nvloeding HSP-station<br>'
+        + '<ol>'
+        + '<li>Controleer ingevulde gegevens</li>'
+        + '<li>Aardingsmethodiek bovengrondse leiding</li>'
+        + '<li>Spaningsniveau</li>'
+        + '<li>Type installatie (GIS of openluchtstation)</li>'
+        + '</ol>';
+    return outputValues;
+}
+function EvaluateStep2G() {
+    outputHSPS[INDUCTIEVE] = messages.inductieveb_nok;
+    var afstandParallellezijde = $("#hsps2").val();
+    var afstandHekwerk = $("#hsps3").val();
+
+    if (!isValueValid(afstandParallellezijde)) {
+        outputHSPS[ERRORS] = "<strong>Ongeldige invoer voor Afstand langste parallelle zijde.</strong><br>";
+        updateOutput("hsps", outputHSPS);
+        return;
+    }
+    if (!isValueValid(afstandHekwerk)) {
+        outputHSPS[ERRORS] = "<strong>Ongeldige invoer voor Afstand tot hekwerk.</strong><br>";
+        updateOutput("hsps", outputHSPS);
+        return;
+    }
+    
+    // gebruik K1 en K2 van configuratie L05
+    var station = {
+        k1: {
+            normaal: 8.976,
+            corrosie: 3.360,
+            eenfasekortsluiting: 5.951,
+            onderhoud: 5.984
+        },
+        k2: {
+            normaal: 401,
+            corrosie: 403,
+            eenfasekortsluiting: 2177,
+            onderhoud: 441
+        }
+    };
+    var ucnormaal = UnityCheck(afstandParallellezijde, afstandHekwerk, station.k1.normaal, station.k2.normaal);
+    var uccorrosie = UnityCheck(afstandParallellezijde, afstandHekwerk, station.k1.corrosie, station.k2.corrosie);
+    var uceenfasekortsluiting = UnityCheck(afstandParallellezijde, afstandHekwerk, station.k1.eenfasekortsluiting, station.k2.eenfasekortsluiting);
+    var uconderhoud = UnityCheck(afstandParallellezijde, afstandHekwerk, station.k1.onderhoud, station.k2.onderhoud);
+    if (ucnormaal < 1 && uccorrosie < 1 && uceenfasekortsluiting < 1 && uconderhoud < 1) {
+        outputHSPS[INDUCTIEVE] = messages.inductieveb_ok;
+    }
+    else {
+        outputHSPS[INDUCTIEVE] = messages.inductieveb_nok;
+        if (uccorrosie >= 1) {
+            outputHSPS[INDUCTIEVE] += '<em>Toelichting: wisselstroomcorrosie. Treed in overleg</em><br>';
+        }
+        else {
+            outputHSPS[INDUCTIEVE] += '<em>Toelichting: aanraakspanning. Treed in overleg</em><br>';
+        }
+        outputHSPS[INDUCTIEVE] += Step3VII();
+    }
+
+    updateOutput("hsps", outputHSPS);
+}
+
+function Step3IX() {
+    var outputValues = '<br>'
+        + 'Weerstandsbe&iuml;nvloeding HSP-station<br>'
+        + '<ol>'
+        + '<li>Controleer ingevulde gegevens</li>'
+        + '<li>Aarding net</li>'
+        + '<li>Type bekleding leiding</li>'
+        + '</ol>';
+    return outputValues;
+}
+function EvaluateHSPsStep1() {
+}
 // ********************** HSP Station - einde *****************************
 // ********************** TEV Systeem - start *****************************
+function initTEVsysteem() {
+    outputTEV[THERMISCHE] = messages.thermischeb_ok;
+    outputTEV[MECHANISCHE] = messages.mechanischeb_ok;
+    tevLeidingIsolatieChange();
+}
+function tevLeidingIsolatieChange() {
+    outputTEV[ERRORS] = undefined;
+    outputTEV[CAPACITIEVE] = undefined;
+    outputTEV[WEERSTAND] = undefined;
+    outputTEV[INDUCTIEVE] = undefined;
+
+    if ($('#tev1').val() === 'Ja') {
+        outputTEV[WEERSTAND] = messages.weerstandsb_ok;
+        outputTEV[INDUCTIEVE] = messages.inductieveb_ok;
+        $('.step2H').hide();
+    } else {
+        outputTEV[CAPACITIEVE] = messages.capacitieveb_ok;
+        $('.step2H').show();
+        tevTypeTEVChange();
+    }
+    tevParallelloopChange();
+    tevHartOpHartChange();
+    updateOutput("tev", outputTEV);
+}
+function tevParallelloopChange() {
+    var parallelloop = $("#tev2").val();
+
+    if (!isValueValid(parallelloop)) {
+        outputTEV[ERRORS] = "<strong>Ongeldige invoer voor Parallelloop.</strong><br>";
+        updateOutput("tev", outputTEV);
+        return;
+    }
+    tevHartOpHartChange();
+    if ($('#tev1').val() !== 'Ja') {
+        EvaluateStep2H();
+    }
+}
+function tevHartOpHartChange() {
+    var hartophart = $("#tev3").val();
+    var parallelloop = $("#tev2").val();
+
+    if (!isValueValid(hartophart)) {
+        outputTEV[ERRORS] = "<strong>Ongeldige invoer voor Hart-op-hart.</strong><br>";
+        updateOutput("tev", outputTEV);
+        return;
+    }
+    outputTEV[ERRORS] = undefined;
+    if ($('#tev1').val() === 'Ja') {
+        if (hartophart > 10) {
+            outputTEV[CAPACITIEVE] = messages.capacitieveb_ok;
+        }
+        else {
+            if (!isValueValid(parallelloop)) {
+                outputTEV[ERRORS] = "<strong>Ongeldige invoer voor Parallelloop.</strong><br>";
+                updateOutput("tev", outputTEV);
+                return;
+            }
+            if (parallelloop < 1) {
+                outputTEV[CAPACITIEVE] = messages.capacitieveb_ok;
+            } else {
+                outputTEV[CAPACITIEVE] = messages.capacitieveb_nok;
+                outputTEV[CAPACITIEVE] += "<em>Toelichting: overbruggingsspanning.</em><br>";
+                outputTEV[CAPACITIEVE] += Step3IV();
+            }
+        }
+    } else {
+        if (hartophart < 13) {
+            outputTEV[WEERSTAND] = messages.weerstandsb_nok;
+            outputTEV[WEERSTAND] += "<em>Toelichting: overbruggingsspanning, aansraakspanning en doorslag.</em><br>";
+            outputTEV[WEERSTAND] += Step3V();
+        } else {
+            outputTEV[WEERSTAND] = messages.weerstandsb_ok;
+        }
+        EvaluateStep2H();
+    }
+    updateOutput("tev", outputTEV);
+}
+function tevTypeTEVChange() {
+    EvaluateStep2H();
+}
+
+function Step3IV() {
+    var outputValues = '<br>'
+        + 'Capacitieve be&iuml;nvloeding TEV-systeem<br>'
+        + '<ol>'
+        + '<li>Controleer ingevulde gegevens</li>'
+        + '<li>Type systeem: AT-, RT-, ST-systeem</li>'
+        + '<li>Geometrie</li>'
+        + '<li>Aardingsmethodiek bovengrondse leiding</li>'
+        + '<li>Spanningsniveau</li>'
+        + '</ol>';
+    return outputValues;
+}
+function Step3V() {
+    var outputValues = '<br>'
+        + 'Weerstandsbe&iuml;nvloeding TEV-systeem<br>'
+        + '<ol>'
+        + '<li>Controleer ingevulde gegevens</li>'
+        + '<li>Met aardingssysteem verbonden geleidende delen</li>'
+        + '</ol>';
+    return outputValues;
+}
+function EvaluateStep2H() {
+    outputTEV[INDUCTIEVE] = messages.inductieveb_nok;
+    var hartophart = $('#tev3').val();
+    if (!isValueValid(hartophart)) {
+        outputTEV[ERRORS] = "<strong>Ongeldige invoer voor Hart-op-hart</strong><br>";
+        updateOutput("hspk", outputTEV);
+        return;
+    }
+    var parallelloop = $('#tev2').val();
+    if (!isValueValid(parallelloop)) {
+        outputTEV[ERRORS] = "<strong>Ongeldige invoer voor Parallelloop</strong><br>";
+        updateOutput("hspk", outputTEV);
+        return;
+    }
+
+    outputTEV[ERRORS] = undefined;
+    var ligging = $('#tev4').find('option:selected');
+    var typeTEV = {
+        k1: {
+            normaal: ligging.data("k1normaal"),
+            corrosie: ligging.data("k1corrosie"),
+            eenfasekortsluiting: ligging.data("k1eenfasekortsluiting"),
+        },
+        k2: {
+            normaal: ligging.data("k2normaal"),
+            corrosie: ligging.data("k2corrosie"),
+            eenfasekortsluiting: ligging.data("k2eenfasekortsluiting"),
+        }
+    };
+
+    var ucnormaal = UnityCheck(parallelloop, hartophart, typeTEV.k1.normaal, typeTEV.k2.normaal);
+    var uccorrosie = UnityCheck(parallelloop, hartophart, typeTEV.k1.corrosie, typeTEV.k2.corrosie);
+    var uceenfasekortsluiting = UnityCheck(parallelloop, hartophart, typeTEV.k1.eenfasekortsluiting, typeTEV.k2.eenfasekortsluiting);
+    if (ucnormaal < 1 && uccorrosie < 1 && uceenfasekortsluiting < 1) {
+        outputTEV[INDUCTIEVE] = messages.inductieveb_ok;
+    }
+    else {
+        outputTEV[INDUCTIEVE] = messages.inductieveb_nok;
+        if (uccorrosie >= 1) {
+            outputTEV[INDUCTIEVE] += '<em>Toelichting: wisselstroomcorrosie. Treed in overleg</em><br>';
+        }
+        else {
+            outputTEV[INDUCTIEVE] += '<em>Toelichting: aanraakspanning. Treed in overleg</em><br>';
+        }
+        outputTEV[INDUCTIEVE] += Step3VII();
+    }
+    updateOutput("tev", outputTEV);
+}
+function EvaluateTEVStep1() {
+}
 // ********************** TEV Systeem - einde *****************************
 
 // ********************** Algemene functies - start *****************************
@@ -498,124 +814,6 @@ function isValueValid(value) {
     }
     return true;
 }// ********************** Algemene functies - einde *****************************
-
-function EvaluateHSPkStep1() {
-}
-
-function EvaluateHSPsStep1() {
-}
-
-function EvaluateTEVStep1() {
-}
-
-function EvaluateStep2F() {
-    var afstandTotHekwerk = $('#hsps3').val();
-    var omtrekStation = $('#hsps4').val();
-    if (afstandTotHekwerk < 0.5 * omtrekStation) {
-        $('#outputValues').append(messages.weerstandsb_nok);
-        $('#outputValues').append('<em>Toelichting: overbruggingsspanning, aanraakspanning en doorslag.</em>');
-        Step3IX();
-    }
-    else {
-        $('#outputValues').append(messages.weerstandsb_ok);
-    }
-}
-
-function EvaluateStep2G() {
-    // gebruik K1 en K2 van configuratie L05
-    var K1 = 10;
-    var K2 = 10;
-    var chk = UnityCheck(K1, K2);
-    if (chk >= 1) {
-        $('#outputValues').append(messages.inductieveb_nok);
-        // k1 en k2 : Normaal bedrijf
-        $('#outputValues').append('<em>Toelichting: aanraakspanning. Treed in overleg</em><br>');
-        // ga naar stap 3(VI)
-        Step3VII();        
-        // k1 en k2 : Corrosie
-        $('#outputValues').append('<em>Toelichting: wisselstroomcorrosie. Treed in overleg</em><br>');
-        // ga naar stap 3(VI)
-        Step3VII();        
-        // k1 en k2 : Eenfasekortsluiting
-        $('#outputValues').append('<em>Toelichting: aanraakspanning. Treed in overleg</em><br>');
-        // ga naar stap 3(VI)
-        Step3VII();        
-        // k1 en k2 : Onderhoud
-        $('#outputValues').append('<em>Toelichting: aanraakspanning. Treed in overleg</em><br>');
-        // ga naar stap 3(VI)
-        Step3VII();
-    }
-    else {
-        $('#outputValues').append(messages.inductieveb_ok);
-    }
-}
-
-function EvaluateStep2H(tevType) {
-    var K1 = 10;
-    var K2 = 10;
-    if (tevType == 'A') {
-        K1 = 20;
-        K2 = 20;
-    }
-    else if (tevType == 'B') {
-        K1 = 30;
-        K2 = 30;
-    }
-    else if (tevType == 'C') {
-        K1 = 40;
-        K2 = 40;
-    }
-    var chk = UnityCheck(K1, K2);
-    if (chk >= 1) {
-        $('#outputValues').append(messages.inductieveb_nok);
-        // k1 en k2 : Normaal bedrijf
-        $('#outputValues').append('<em>Toelichting: aanraakspanning. Treed in overleg</em><br>');
-        // ga naar stap 3(VII)
-        Step3VII();
-        // k1 en k2 : Corrosie
-        $('#outputValues').append('<em>Toelichting: wisselstroomcorrosie. Treed in overleg</em><br>');
-        // ga naar stap 3(VII)
-        Step3VII();        
-        // k1 en k2 : Eenfasekortsluiting
-        $('#outputValues').append('<em>Toelichting: aanraakspanning. Treed in overleg</em><br>');
-        // ga naar stap 3(VII)
-        Step3VII();
-    }
-    else {
-        $('#outputValues').append(messages.inductieveb_ok);
-    }
-}
-
-
-function Step3III() {
-    $('#outputValues').append('<br>');
-    $('#outputValues').append('Capacitieve be&iuml;nvloeding HSP-station<br>');
-    $('#outputValues').append('<ol>');
-    $('#outputValues').append('<li>Controleer ingevulde gegevens</li>')
-    $('#outputValues').append('<li>Aardingsmethodiek bovengrondse leiding</li>')
-    $('#outputValues').append('<li>Spaningsniveau</li>')
-    $('#outputValues').append('<li>Type installatie (GIS of openluchtstation)</li>')
-    $('#outputValues').append('</ol>');
-}
-function Step3IV() {
-    $('#outputValues').append('<br>');
-    $('#outputValues').append('Capacitieve be&iuml;nvloeding TEV-systeem<br>');
-    $('#outputValues').append('<ol>');
-    $('#outputValues').append('<li>Controleer ingevulde gegevens</li>')
-    $('#outputValues').append('<li>Type systeem: AT-, RT-, ST-systeem</li>')
-    $('#outputValues').append('<li>Geometrie</li>')
-    $('#outputValues').append('<li>Aardingsmethodiek bovengrondse leiding</li>')
-    $('#outputValues').append('<li>Spanningsniveau</li>')
-    $('#outputValues').append('</ol>');
-}
-function Step3V() {
-    $('#outputValues').append('<br>');
-    $('#outputValues').append('Weerstandsbe&iuml;nvloeding TEV-systeem<br>');
-    $('#outputValues').append('<ol>');
-    $('#outputValues').append('<li>Controleer ingevulde gegevens</li>')
-    $('#outputValues').append('<li>Met aardingssysteem verbonden geleidende delen</li>')
-    $('#outputValues').append('</ol>');
-}
 function Step3VII() {
     var outputValues = '<br>'
         + 'Inductieve be&iuml;nvloeding<br>'
@@ -624,23 +822,4 @@ function Step3VII() {
         + '<li>Bepaal juiste K1 en K2 waarde</li>'
         + '</ol>';
     return outputValues;
-}
-function Step3VIII() {
-    $('#outputValues').append('<br>');
-    $('#outputValues').append('Weerstandsbe&iuml;nvloeding HSP-kabel<br>');
-    $('#outputValues').append('<ol>');
-    $('#outputValues').append('<li>Controleer ingevulde gegevens</li>')
-    $('#outputValues').append('<li>Aarding net</li>')
-    $('#outputValues').append('<li>Type bekleding leiding</li>')
-    $('#outputValues').append('<li>Type isolatie kabelmantels (is het GPLK?)</li>')
-    $('#outputValues').append('</ol>');
-}
-function Step3IX() {
-    $('#outputValues').append('<br>');
-    $('#outputValues').append('Weerstandsbe&iuml;nvloeding HSP-station<br>');
-    $('#outputValues').append('<ol>');
-    $('#outputValues').append('<li>Controleer ingevulde gegevens</li>')
-    $('#outputValues').append('<li>Aarding net</li>')
-    $('#outputValues').append('<li>Type bekleding leiding</li>')
-    $('#outputValues').append('</ol>');
 }

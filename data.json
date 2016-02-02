@@ -3,6 +3,8 @@
         {
             "imagesrc": "images/mastbeeld.PNG",
             "code": "L01",
+            "geometrie": "Lijn horizontaal 2 circuit",
+            "spanning": "50kV",
             "k1":{
                 "normaal": 10,
                 "corrosie": 20,
@@ -20,6 +22,8 @@
         {
             "imagesrc": "images/mastbeeld.PNG",
             "code": "L02",
+            "geometrie": "Lijn horizontaal 2 circuit",
+            "spanning": "110 kV",
             "k1":{
                 "normaal": 3.825,
                 "corrosie": 2.391,
@@ -37,6 +41,8 @@
         {
             "imagesrc": "images/mastbeeld.PNG",
             "code": "L03",
+            "geometrie": "Lijn horizontaal 2 circuit",
+            "spanning": "150 kV",
             "k1":{
                 "normaal": 7.665,
                 "corrosie": 4.794,
@@ -54,6 +60,8 @@
         {
             "imagesrc": "images/mastbeeld.PNG",
             "code": "L04",
+            "geometrie": "Lijn horizontaal 2 circuit",
+            "spanning": "220 kV",
             "k1":{
                 "normaal": 9.368,
                 "corrosie": 5.850,
@@ -71,6 +79,8 @@
         {
             "imagesrc": "images/mastbeeld.PNG",
             "code": "L05",
+            "geometrie": "Lijn horizontaal 2 circuit",
+            "spanning": "380 kV",
             "k1":{
                 "normaal": 8.976,
                 "corrosie": 3.360,
@@ -88,6 +98,8 @@
         {
             "imagesrc": "images/mastbeeld.PNG",
             "code": "L06",
+            "geometrie": "Lijn horizontaal 1 circuit",
+            "spanning": "150 kV",
             "k1":{
                 "normaal": 6.625,
                 "corrosie": 4.138,
@@ -101,6 +113,482 @@
                 "onderhoud": 451
             },
             "hoogte": 48
+        },
+        {
+            "imagesrc": "images/mastbeeld.PNG",
+            "code": "L07",
+            "geometrie": "Lijn verticaal: ton",
+            "spanning": "50 kV",
+            "k1":{
+                "normaal": 3.460,
+                "corrosie": 2.159,
+                "eenfasekortsluiting": 9.608,
+                "onderhoud": 3.610
+            },
+            "k2":{
+                "normaal": 1040,
+                "corrosie": 1043,
+                "eenfasekortsluiting": 1491,
+                "onderhoud": 997
+            },
+            "hoogte": 48
+        },
+        {
+            "imagesrc": "images/mastbeeld.PNG",
+            "code": "L08",
+            "geometrie": "Lijn verticaal: ton",
+            "spanning": "110 kV",
+            "k1":{
+                "normaal": 7.160,
+                "corrosie": 4.475,
+                "eenfasekortsluiting": 11.043,
+                "onderhoud": 7.773
+            },
+            "k2":{
+                "normaal": 765,
+                "corrosie": 765,
+                "eenfasekortsluiting": 1565,
+                "onderhoud": 721
+            },
+            "hoogte": 48
+        },
+        {
+            "imagesrc": "images/mastbeeld.PNG",
+            "code": "L09",
+            "geometrie": "Lijn verticaal: ton",
+            "spanning": "150 kV",
+            "k1":{
+                "normaal": 18.710,
+                "corrosie": 11.700,
+                "eenfasekortsluiting": 7.799,
+                "onderhoud": 21.610
+            },
+            "k2":{
+                "normaal": 726,
+                "corrosie": 726,
+                "eenfasekortsluiting": 1616,
+                "onderhoud": 660
+            },
+            "hoogte": 48
+        },
+        {
+            "imagesrc": "images/mastbeeld.PNG",
+            "code": "L10",
+            "geometrie": "Lijn verticaal: ton",
+            "spanning": "220 kV",
+            "k1":{
+                "normaal": 15.560,
+                "corrosie": 9.730,
+                "eenfasekortsluiting": 3.653,
+                "onderhoud": 17.912
+            },
+            "k2":{
+                "normaal": 633,
+                "corrosie": 632,
+                "eenfasekortsluiting": 1806,
+                "onderhoud": 599
+            },
+            "hoogte": 48
+        },
+        {
+            "imagesrc": "images/mastbeeld.PNG",
+            "code": "L11",
+            "geometrie": "Lijn verticaal: ton",
+            "spanning": "380 kV",
+            "k1":{
+                "normaal": 17.560,
+                "corrosie": 6.590,
+                "eenfasekortsluiting": 6.253,
+                "onderhoud": 20.264
+            },
+            "k2":{
+                "normaal": 591,
+                "corrosie": 591,
+                "eenfasekortsluiting": 1930,
+                "onderhoud": 568
+            },
+            "hoogte": 48
+        },
+        {
+            "imagesrc": "images/mastbeeld.PNG",
+            "code": "L12",
+            "geometrie": "Lijn verticaal: denneboom",
+            "spanning": "50 kV",
+            "k1":{
+                "normaal": 7.385,
+                "corrosie": 4.616,
+                "eenfasekortsluiting": 21.454,
+                "onderhoud": 8.695
+            },
+            "k2":{
+                "normaal": 925,
+                "corrosie": 925,
+                "eenfasekortsluiting": 1544,
+                "onderhoud": 808
+            },
+            "hoogte": 48
+        },
+        {
+            "imagesrc": "images/mastbeeld.PNG",
+            "code": "L13",
+            "geometrie": "Lijn verticaal: denneboom",
+            "spanning": "110 kV",
+            "k1":{
+                "normaal": 7.458,
+                "corrosie": 4.659,
+                "eenfasekortsluiting": 7.929,
+                "onderhoud": 8.583
+            },
+            "k2":{
+                "normaal": 850,
+                "corrosie": 851,
+                "eenfasekortsluiting": 1487,
+                "onderhoud": 760
+            },
+            "hoogte": 48
+        },
+        {
+            "imagesrc": "images/mastbeeld.PNG",
+            "code": "L14",
+            "geometrie": "Lijn verticaal: denneboom",
+            "spanning": "150 kV",
+            "k1":{
+                "normaal": 21.415,
+                "corrosie": 13.381,
+                "eenfasekortsluiting": 7.124,
+                "onderhoud": 25.620
+            },
+            "k2":{
+                "normaal": 742,
+                "corrosie": 742,
+                "eenfasekortsluiting": 1693,
+                "onderhoud": 659
+            },
+            "hoogte": 48
+        },
+        {
+            "imagesrc": "images/mastbeeld.PNG",
+            "code": "L15",
+            "geometrie": "Lijn verticaal: denneboom",
+            "spanning": "220 kV",
+            "k1":{
+                "normaal": 32.344,
+                "corrosie": 20.220,
+                "eenfasekortsluiting": 8.398,
+                "onderhoud": 40.184
+            },
+            "k2":{
+                "normaal": 661,
+                "corrosie": 661,
+                "eenfasekortsluiting": 1665,
+                "onderhoud": 581
+            },
+            "hoogte": 48
+        },
+        {
+            "imagesrc": "images/mastbeeld.PNG",
+            "code": "L16",
+            "geometrie": "Lijn verticaal: denneboom",
+            "spanning": "380 kV",
+            "k1":{
+                "normaal": 43.344,
+                "corrosie": 16.260,
+                "eenfasekortsluiting": 11.052,
+                "onderhoud": 51.200
+            },
+            "k2":{
+                "normaal": 672,
+                "corrosie": 672,
+                "eenfasekortsluiting": 2063,
+                "onderhoud": 612
+            },
+            "hoogte": 48
+        },
+        {
+            "imagesrc": "images/mastbeeld.PNG",
+            "code": "L17",
+            "geometrie": "Lijn verticaal: recht",
+            "spanning": "110 kV",
+            "k1":{
+                "normaal": 5.405,
+                "corrosie": 3.378,
+                "eenfasekortsluiting": 37.572,
+                "onderhoud": 5.570
+            },
+            "k2":{
+                "normaal": 826,
+                "corrosie": 825,
+                "eenfasekortsluiting": 1394,
+                "onderhoud": 802
+            },
+            "hoogte": 48
+        },
+        {
+            "imagesrc": "images/mastbeeld.PNG",
+            "code": "L18",
+            "geometrie": "Lijn verticaal: recht",
+            "spanning": "380 kV",
+            "k1":{
+                "normaal": 3.024,
+                "corrosie": 1.130,
+                "eenfasekortsluiting": 13.292,
+                "onderhoud": 48.152
+            },
+            "k2":{
+                "normaal": 810,
+                "corrosie": 814,
+                "eenfasekortsluiting": 1741,
+                "onderhoud": 613
+            },
+            "hoogte": 48
+        },
+        {
+            "imagesrc": "images/mastbeeld.PNG",
+            "code": "L19",
+            "geometrie": "Lijn -verticaal: 3 circuit",
+            "spanning": "380 kV",
+            "k1":{
+                "normaal": 67.720,
+                "corrosie": 25.400,
+                "eenfasekortsluiting": 10.565,
+                "onderhoud": 77.488
+            },
+            "k2":{
+                "normaal": 548,
+                "corrosie": 548,
+                "eenfasekortsluiting": 2573,
+                "onderhoud": 506
+            },
+            "hoogte": 48
+        },
+        {
+            "imagesrc": "images/mastbeeld.PNG",
+            "code": "L20",
+            "geometrie": "Lijn Donau: 2 circuit",
+            "spanning": "110 kV",
+            "k1":{
+                "normaal": 5.340,
+                "corrosie": 3.341,
+                "eenfasekortsluiting": 6.591,
+                "onderhoud": 6.433
+            },
+            "k2":{
+                "normaal": 772,
+                "corrosie": 771,
+                "eenfasekortsluiting": 1637,
+                "onderhoud": 677
+            },
+            "hoogte": 48
+        },
+        {
+            "imagesrc": "images/mastbeeld.PNG",
+            "code": "L21",
+            "geometrie": "Lijn Donau: 2 circuit",
+            "spanning": "150 kV",
+            "k1":{
+                "normaal": 12.555,
+                "corrosie": 7.844,
+                "eenfasekortsluiting": 5.552,
+                "onderhoud": 16.230
+            },
+            "k2":{
+                "normaal": 591,
+                "corrosie": 591,
+                "eenfasekortsluiting": 1705,
+                "onderhoud": 531
+            },
+            "hoogte": 48
+        },
+        {
+            "imagesrc": "images/mastbeeld.PNG",
+            "code": "L22",
+            "geometrie": "Lijn Donau: 2 circuit",
+            "spanning": "220 kV",
+            "k1":{
+                "normaal": 26.624,
+                "corrosie": 16.630,
+                "eenfasekortsluiting": 6.937,
+                "onderhoud": 33.576
+            },
+            "k2":{
+                "normaal": 629,
+                "corrosie": 629,
+                "eenfasekortsluiting": 1881,
+                "onderhoud": 557
+            },
+            "hoogte": 48
+        },
+        {
+            "imagesrc": "images/mastbeeld.PNG",
+            "code": "L23",
+            "geometrie": "Lijn Donau: 2 circuit",
+            "spanning": "380 kV",
+            "k1":{
+                "normaal": 34.848,
+                "corrosie": 13.070,
+                "eenfasekortsluiting": 8.719,
+                "onderhoud": 45.168
+            },
+            "k2":{
+                "normaal": 612,
+                "corrosie": 612,
+                "eenfasekortsluiting": 2108,
+                "onderhoud": 542
+            },
+            "hoogte": 48
+        },
+        {
+            "imagesrc": "images/mastbeeld.PNG",
+            "code": "L24",
+            "geometrie": "Lijn Donau: 1 circuit",
+            "spanning": "50 kV",
+            "k1":{
+                "normaal": 1.848,
+                "corrosie": 1.156,
+                "eenfasekortsluiting": 21.397,
+                "onderhoud": 0.925
+            },
+            "k2":{
+                "normaal": 993,
+                "corrosie": 991,
+                "eenfasekortsluiting": 1397,
+                "onderhoud": 991
+            },
+            "hoogte": 48
+        },
+        {
+            "imagesrc": "images/mastbeeld.PNG",
+            "code": "L25",
+            "geometrie": "Lijn Donau: 1 circuit",
+            "spanning": "110 kV",
+            "k1":{
+                "normaal": 2.850,
+                "corrosie": 1.781,
+                "eenfasekortsluiting": 12.238,
+                "onderhoud": 1.425
+            },
+            "k2":{
+                "normaal": 760,
+                "corrosie": 760,
+                "eenfasekortsluiting": 1392,
+                "onderhoud": 760
+            },
+            "hoogte": 48
+        },
+        {
+            "imagesrc": "images/mastbeeld.PNG",
+            "code": "L26",
+            "geometrie": "Lijn Donau: 1 circuit",
+            "spanning": "220 kV",
+            "k1":{
+                "normaal": 18.056,
+                "corrosie": 11.290,
+                "eenfasekortsluiting": 8.849,
+                "onderhoud": 9.032
+            },
+            "k2":{
+                "normaal": 623,
+                "corrosie": 623,
+                "eenfasekortsluiting": 1310,
+                "onderhoud": 623
+            },
+            "hoogte": 48
+        },
+        {
+            "imagesrc": "images/mastbeeld.PNG",
+            "code": "L27",
+            "geometrie": "Lijn Donau: 3 circuit",
+            "spanning": "150 kV",
+            "k1":{
+                "normaal": 16.925,
+                "corrosie": 10.581,
+                "eenfasekortsluiting": 7.752,
+                "onderhoud": 18.270
+            },
+            "k2":{
+                "normaal": 632,
+                "corrosie": 631,
+                "eenfasekortsluiting": 1829,
+                "onderhoud": 578
+            },
+            "hoogte": 48
+        },
+        {
+            "imagesrc": "images/mastbeeld.PNG",
+            "code": "L28",
+            "geometrie": "Lijn Donau: 4 circuit",
+            "spanning": "380 kV",
+            "k1":{
+                "normaal": 51.984,
+                "corrosie": 19.490,
+                "eenfasekortsluiting": 12.913,
+                "onderhoud": 57.448
+            },
+            "k2":{
+                "normaal": 568,
+                "corrosie": 568,
+                "eenfasekortsluiting": 2088,
+                "onderhoud": 509
+            },
+            "hoogte": 48
+        },
+        {
+            "imagesrc": "images/mastbeeld.PNG",
+            "code": "L29",
+            "geometrie": "Lijn Combi Horizontaal/Donau",
+            "spanning": "110/380 kV",
+            "k1":{
+                "normaal": 47.824,
+                "corrosie": 17.930,
+                "eenfasekortsluiting": 10.358,
+                "onderhoud": 58.840
+            },
+            "k2":{
+                "normaal": 592,
+                "corrosie": 593,
+                "eenfasekortsluiting": 2409,
+                "onderhoud": 598
+            },
+            "hoogte": 48
+        },
+        {
+            "imagesrc": "images/mastbeeld.PNG",
+            "code": "L30",
+            "geometrie": "Lijn Combi Horizontaal/Verticaal",
+            "spanning": "110/380 kV",
+            "k1":{
+                "normaal": 54.168,
+                "corrosie": 20.320,
+                "eenfasekortsluiting": 10.585,
+                "onderhoud": 63.240
+            },
+            "k2":{
+                "normaal": 599,
+                "corrosie": 599,
+                "eenfasekortsluiting": 2290,
+                "onderhoud": 571
+            },
+            "hoogte": 48
+        },
+        {
+            "imagesrc": "images/mastbeeld.PNG",
+            "code": "L31",
+            "geometrie": "Lijn Combi Verticaal/verticaal",
+            "spanning": "150/380 kV",
+            "k1":{
+                "normaal": 6.656,
+                "corrosie": 2.500,
+                "eenfasekortsluiting": 12.543,
+                "onderhoud": 6.816
+            },
+            "k2":{
+                "normaal": 943,
+                "corrosie": 940,
+                "eenfasekortsluiting": 1915,
+                "onderhoud": 967
+            },
+            "hoogte": 48
         }
+       
     ]
 }
