@@ -741,7 +741,7 @@ function LoadJSON() {
         var output = "";
         $.each(data, function (i, mastbeelden) {
             $.each(mastbeelden, function (x, mastbeeld) {
-                output += '<div class="col-xs-12">';
+                output += '<div class="col-xs-8">';
                 output += '<img src="' + mastbeeld.imagesrc
                 + '" class="img-responsive"'
                 + ' data-code="' + mastbeeld.code + '"'
@@ -756,6 +756,20 @@ function LoadJSON() {
                 + ' data-hoogte="' + mastbeeld.hoogte + '"'
                 + ' width="300" onClick="selectMast(this)">';
                 output += '</div>';
+                output += '<div class="col-xs-4"><p><small>';
+                output += 'Geometrie: ' + mastbeeld.geometrie + '<br>';
+                output += 'Code: ' + mastbeeld.code + '<br>';
+                output += 'Spanning: ' + mastbeeld.spanning + '<br>';
+                output += 'Hoogte: ' + mastbeeld.hoogte + '<br>';
+                output += 'K1 Normaal: ' + mastbeeld.k1.normaal + '<br>';
+                output += 'K2 Normaal: ' + mastbeeld.k2.normaal + '<br>';
+                output += 'K1 Corrosie: ' + mastbeeld.k1.corrosie + '<br>';
+                output += 'K2 Corrosie: ' + mastbeeld.k2.corrosie + '<br>';
+                output += 'K1 Eenfasekortsluiting: ' + mastbeeld.k1.eenfasekortsluiting + '<br>';
+                output += 'K2 Eenfasekortsluiting: ' + mastbeeld.k2.eenfasekortsluiting + '<br>';
+                output += 'K1 Onderhoud: ' + mastbeeld.k1.onderhoud + '<br>';
+                output += 'K1 Onderhoud: ' + mastbeeld.k2.onderhoud + '<br>';
+                output += '</small></p></div>';
             });
         });
         $('#placeholder').html(output);
@@ -767,17 +781,17 @@ function selectMast(img) {
     $(clonedImage).attr("id", "myImage");
     var image = $('#myImage');
     image.replaceWith(clonedImage);
-    $("#mastdata").html('<ul style="list-style-type:none"'
-        + "<li><strong>K1 normaal:</strong> " + $(img).data('k1normaal') + "</li>"
-        + "<li><strong>K2 normaal:</strong> " + $(img).data('k2normaal') + "</li>"
-        + "<li><strong>K1 corrosie:</strong> " + $(img).data('k1corrosie') + "</li>"
-        + "<li><strong>K2 corrosie:</strong> " + $(img).data('k2corrosie') + "</li>"
-        + "<li><strong>K1 eenfase:</strong> " + $(img).data('k1eenfasekortsluiting') + "</li>"
-        + "<li><strong>K2 eenfase:</strong> " + $(img).data('k2eenfasekortsluiting') + "</li>"
-        + "<li><strong>K1 onderhoud:</strong> " + $(img).data('k1onderhoud') + "</li>"
-        + "<li><strong>K2 onderhoud:</strong> " + $(img).data('k2onderhoud') + "</li>"
-        + "<li><strong>Hoogte:</strong> " + $(img).data('hoogte') + "</li>"
-        + "</ul>");
+    // $("#mastdata").html('<ul style="list-style-type:none"'
+    //     + "<li><strong>K1 normaal:</strong> " + $(img).data('k1normaal') + "</li>"
+    //     + "<li><strong>K2 normaal:</strong> " + $(img).data('k2normaal') + "</li>"
+    //     + "<li><strong>K1 corrosie:</strong> " + $(img).data('k1corrosie') + "</li>"
+    //     + "<li><strong>K2 corrosie:</strong> " + $(img).data('k2corrosie') + "</li>"
+    //     + "<li><strong>K1 eenfase:</strong> " + $(img).data('k1eenfasekortsluiting') + "</li>"
+    //     + "<li><strong>K2 eenfase:</strong> " + $(img).data('k2eenfasekortsluiting') + "</li>"
+    //     + "<li><strong>K1 onderhoud:</strong> " + $(img).data('k1onderhoud') + "</li>"
+    //     + "<li><strong>K2 onderhoud:</strong> " + $(img).data('k2onderhoud') + "</li>"
+    //     + "<li><strong>Hoogte:</strong> " + $(img).data('hoogte') + "</li>"
+    //     + "</ul>");
     $("#myModal1").modal('hide');
     // is hartop hartafstand < 58.9, dan stap 2 A
     // stap2A
