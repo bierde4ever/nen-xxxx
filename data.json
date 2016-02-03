@@ -1,7 +1,7 @@
 {
     "mastbeelden": [
         {
-            "imagesrc": "images/mastbeeld.PNG",
+            "imagesrc": "images/L01.PNG",
             "code": "L01",
             "geometrie": "Lijn horizontaal 2 circuit",
             "spanning": "50kV",
@@ -17,10 +17,10 @@
                 "eenfasekortsluiting": 30,
                 "onderhoud": 40
             },
-            "hoogte": 48
+            "hoogte": 23
         },
         {
-            "imagesrc": "images/mastbeeld.PNG",
+            "imagesrc": "images/L02.PNG",
             "code": "L02",
             "geometrie": "Lijn horizontaal 2 circuit",
             "spanning": "110 kV",
@@ -36,10 +36,10 @@
                 "eenfasekortsluiting": 1697,
                 "onderhoud": 550
             },
-            "hoogte": 48
+            "hoogte": 40
         },
         {
-            "imagesrc": "images/mastbeeld.PNG",
+            "imagesrc": "images/L03.PNG",
             "code": "L03",
             "geometrie": "Lijn horizontaal 2 circuit",
             "spanning": "150 kV",
@@ -55,10 +55,10 @@
                 "eenfasekortsluiting": 2032,
                 "onderhoud": 1018
             },
-            "hoogte": 48
+            "hoogte": 27.5
         },
         {
-            "imagesrc": "images/mastbeeld.PNG",
+            "imagesrc": "images/L04.PNG",
             "code": "L04",
             "geometrie": "Lijn horizontaal 2 circuit",
             "spanning": "220 kV",
@@ -74,10 +74,10 @@
                 "eenfasekortsluiting": 1921,
                 "onderhoud": 424
             },
-            "hoogte": 48
+            "hoogte": 30.5
         },
         {
-            "imagesrc": "images/mastbeeld.PNG",
+            "imagesrc": "images/L05.PNG",
             "code": "L05",
             "geometrie": "Lijn horizontaal 2 circuit",
             "spanning": "380 kV",
@@ -93,10 +93,10 @@
                 "eenfasekortsluiting": 2177,
                 "onderhoud": 441
             },
-            "hoogte": 48
+            "hoogte": 25
         },
         {
-            "imagesrc": "images/mastbeeld.PNG",
+            "imagesrc": "images/L06.PNG",
             "code": "L06",
             "geometrie": "Lijn horizontaal 1 circuit",
             "spanning": "150 kV",
@@ -112,10 +112,10 @@
                 "eenfasekortsluiting": 1588,
                 "onderhoud": 451
             },
-            "hoogte": 48
+            "hoogte": 25.8
         },
         {
-            "imagesrc": "images/mastbeeld.PNG",
+            "imagesrc": "images/L07.PNG",
             "code": "L07",
             "geometrie": "Lijn verticaal: ton",
             "spanning": "50 kV",
@@ -131,10 +131,10 @@
                 "eenfasekortsluiting": 1491,
                 "onderhoud": 997
             },
-            "hoogte": 48
+            "hoogte": 20.3
         },
         {
-            "imagesrc": "images/mastbeeld.PNG",
+            "imagesrc": "images/L08.PNG",
             "code": "L08",
             "geometrie": "Lijn verticaal: ton",
             "spanning": "110 kV",
@@ -150,10 +150,10 @@
                 "eenfasekortsluiting": 1565,
                 "onderhoud": 721
             },
-            "hoogte": 48
+            "hoogte": 29.2
         },
         {
-            "imagesrc": "images/mastbeeld.PNG",
+            "imagesrc": "images/L09.PNG",
             "code": "L09",
             "geometrie": "Lijn verticaal: ton",
             "spanning": "150 kV",
@@ -169,10 +169,10 @@
                 "eenfasekortsluiting": 1616,
                 "onderhoud": 660
             },
-            "hoogte": 48
+            "hoogte": 38
         },
         {
-            "imagesrc": "images/mastbeeld.PNG",
+            "imagesrc": "images/L10.PNG",
             "code": "L10",
             "geometrie": "Lijn verticaal: ton",
             "spanning": "220 kV",
@@ -188,10 +188,10 @@
                 "eenfasekortsluiting": 1806,
                 "onderhoud": 599
             },
-            "hoogte": 48
+            "hoogte": 41.7
         },
         {
-            "imagesrc": "images/mastbeeld.PNG",
+            "imagesrc": "images/L11.PNG",
             "code": "L11",
             "geometrie": "Lijn verticaal: ton",
             "spanning": "380 kV",
@@ -207,10 +207,10 @@
                 "eenfasekortsluiting": 1930,
                 "onderhoud": 568
             },
-            "hoogte": 48
+            "hoogte": 52.2
         },
         {
-            "imagesrc": "images/mastbeeld.PNG",
+            "imagesrc": "images/L12.PNG",
             "code": "L12",
             "geometrie": "Lijn verticaal: denneboom",
             "spanning": "50 kV",
@@ -226,10 +226,10 @@
                 "eenfasekortsluiting": 1544,
                 "onderhoud": 808
             },
-            "hoogte": 48
+            "hoogte": 28.2
         },
         {
-            "imagesrc": "images/mastbeeld.PNG",
+            "imagesrc": "images/L13.PNG",
             "code": "L13",
             "geometrie": "Lijn verticaal: denneboom",
             "spanning": "110 kV",
@@ -245,10 +245,10 @@
                 "eenfasekortsluiting": 1487,
                 "onderhoud": 760
             },
-            "hoogte": 48
+            "hoogte": 28.8
         },
         {
-            "imagesrc": "images/mastbeeld.PNG",
+            "imagesrc": "images/L14.PNG",
             "code": "L14",
             "geometrie": "Lijn verticaal: denneboom",
             "spanning": "150 kV",
@@ -264,10 +264,10 @@
                 "eenfasekortsluiting": 1693,
                 "onderhoud": 659
             },
-            "hoogte": 48
+            "hoogte": 28.1
         },
         {
-            "imagesrc": "images/mastbeeld.PNG",
+            "imagesrc": "images/L15.PNG",
             "code": "L15",
             "geometrie": "Lijn verticaal: denneboom",
             "spanning": "220 kV",
@@ -283,10 +283,10 @@
                 "eenfasekortsluiting": 1665,
                 "onderhoud": 581
             },
-            "hoogte": 48
+            "hoogte": 42.4
         },
         {
-            "imagesrc": "images/mastbeeld.PNG",
+            "imagesrc": "images/L16.PNG",
             "code": "L16",
             "geometrie": "Lijn verticaal: denneboom",
             "spanning": "380 kV",
@@ -302,10 +302,10 @@
                 "eenfasekortsluiting": 2063,
                 "onderhoud": 612
             },
-            "hoogte": 48
+            "hoogte": 51.9
         },
         {
-            "imagesrc": "images/mastbeeld.PNG",
+            "imagesrc": "images/L17.PNG",
             "code": "L17",
             "geometrie": "Lijn verticaal: recht",
             "spanning": "110 kV",
@@ -321,10 +321,10 @@
                 "eenfasekortsluiting": 1394,
                 "onderhoud": 802
             },
-            "hoogte": 48
+            "hoogte": 21.9
         },
         {
-            "imagesrc": "images/mastbeeld.PNG",
+            "imagesrc": "images/L18.PNG",
             "code": "L18",
             "geometrie": "Lijn verticaal: recht",
             "spanning": "380 kV",
@@ -340,10 +340,10 @@
                 "eenfasekortsluiting": 1741,
                 "onderhoud": 613
             },
-            "hoogte": 48
+            "hoogte": 52
         },
         {
-            "imagesrc": "images/mastbeeld.PNG",
+            "imagesrc": "images/L19.PNG",
             "code": "L19",
             "geometrie": "Lijn -verticaal: 3 circuit",
             "spanning": "380 kV",
@@ -359,10 +359,10 @@
                 "eenfasekortsluiting": 2573,
                 "onderhoud": 506
             },
-            "hoogte": 48
+            "hoogte": 57.6
         },
         {
-            "imagesrc": "images/mastbeeld.PNG",
+            "imagesrc": "images/L20.PNG",
             "code": "L20",
             "geometrie": "Lijn Donau: 2 circuit",
             "spanning": "110 kV",
@@ -378,10 +378,10 @@
                 "eenfasekortsluiting": 1637,
                 "onderhoud": 677
             },
-            "hoogte": 48
+            "hoogte": 20
         },
         {
-            "imagesrc": "images/mastbeeld.PNG",
+            "imagesrc": "images/L21.PNG",
             "code": "L21",
             "geometrie": "Lijn Donau: 2 circuit",
             "spanning": "150 kV",
@@ -397,10 +397,10 @@
                 "eenfasekortsluiting": 1705,
                 "onderhoud": 531
             },
-            "hoogte": 48
+            "hoogte": 30
         },
         {
-            "imagesrc": "images/mastbeeld.PNG",
+            "imagesrc": "images/L22.PNG",
             "code": "L22",
             "geometrie": "Lijn Donau: 2 circuit",
             "spanning": "220 kV",
@@ -416,10 +416,10 @@
                 "eenfasekortsluiting": 1881,
                 "onderhoud": 557
             },
-            "hoogte": 48
+            "hoogte": 37.8
         },
         {
-            "imagesrc": "images/mastbeeld.PNG",
+            "imagesrc": "images/L23.PNG",
             "code": "L23",
             "geometrie": "Lijn Donau: 2 circuit",
             "spanning": "380 kV",
@@ -435,10 +435,10 @@
                 "eenfasekortsluiting": 2108,
                 "onderhoud": 542
             },
-            "hoogte": 48
+            "hoogte": 46.5
         },
         {
-            "imagesrc": "images/mastbeeld.PNG",
+            "imagesrc": "images/L24.PNG",
             "code": "L24",
             "geometrie": "Lijn Donau: 1 circuit",
             "spanning": "50 kV",
@@ -454,10 +454,10 @@
                 "eenfasekortsluiting": 1397,
                 "onderhoud": 991
             },
-            "hoogte": 48
+            "hoogte": 16.9
         },
         {
-            "imagesrc": "images/mastbeeld.PNG",
+            "imagesrc": "images/L25.PNG",
             "code": "L25",
             "geometrie": "Lijn Donau: 1 circuit",
             "spanning": "110 kV",
@@ -473,10 +473,10 @@
                 "eenfasekortsluiting": 1392,
                 "onderhoud": 760
             },
-            "hoogte": 48
+            "hoogte": 21.9
         },
         {
-            "imagesrc": "images/mastbeeld.PNG",
+            "imagesrc": "images/L26.PNG",
             "code": "L26",
             "geometrie": "Lijn Donau: 1 circuit",
             "spanning": "220 kV",
@@ -492,10 +492,10 @@
                 "eenfasekortsluiting": 1310,
                 "onderhoud": 623
             },
-            "hoogte": 48
+            "hoogte": 37.8
         },
         {
-            "imagesrc": "images/mastbeeld.PNG",
+            "imagesrc": "images/L27.PNG",
             "code": "L27",
             "geometrie": "Lijn Donau: 3 circuit",
             "spanning": "150 kV",
@@ -511,10 +511,10 @@
                 "eenfasekortsluiting": 1829,
                 "onderhoud": 578
             },
-            "hoogte": 48
+            "hoogte": 43
         },
         {
-            "imagesrc": "images/mastbeeld.PNG",
+            "imagesrc": "images/L28.PNG",
             "code": "L28",
             "geometrie": "Lijn Donau: 4 circuit",
             "spanning": "380 kV",
@@ -530,10 +530,10 @@
                 "eenfasekortsluiting": 2088,
                 "onderhoud": 509
             },
-            "hoogte": 48
+            "hoogte": 58.9
         },
         {
-            "imagesrc": "images/mastbeeld.PNG",
+            "imagesrc": "images/L29.PNG",
             "code": "L29",
             "geometrie": "Lijn Combi Horizontaal/Donau",
             "spanning": "110/380 kV",
@@ -549,10 +549,10 @@
                 "eenfasekortsluiting": 2409,
                 "onderhoud": 598
             },
-            "hoogte": 48
+            "hoogte": 54.1
         },
         {
-            "imagesrc": "images/mastbeeld.PNG",
+            "imagesrc": "images/L30.PNG",
             "code": "L30",
             "geometrie": "Lijn Combi Horizontaal/Verticaal",
             "spanning": "110/380 kV",
@@ -568,10 +568,10 @@
                 "eenfasekortsluiting": 2290,
                 "onderhoud": 571
             },
-            "hoogte": 48
+            "hoogte": 51.9
         },
         {
-            "imagesrc": "images/mastbeeld.PNG",
+            "imagesrc": "images/L31.PNG",
             "code": "L31",
             "geometrie": "Lijn Combi Verticaal/verticaal",
             "spanning": "150/380 kV",
@@ -587,7 +587,7 @@
                 "eenfasekortsluiting": 1915,
                 "onderhoud": 967
             },
-            "hoogte": 48
+            "hoogte": 52
         }
        
     ]
