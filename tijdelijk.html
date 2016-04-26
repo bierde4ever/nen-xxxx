@@ -1,0 +1,29 @@
+
+    <div ng-repeat="mastbeeld in hspl.masten">
+        <div class="col-xs-8">
+            <img ng-src="{{mastbeeld.imagesrc}}" class="img-responsive"
+            ng-attr-data-code="{{mastbeeld.code}}" ng-attr-data-k1normaal="{{mastbeeld.k1.normaal}}"
+            ng-attr-data-k2normaal="{{mastbeeld.k2.normaal}}" ng-attr-data-k1corrosie="{{mastbeeld.k1.corrosie}}" ng-attr-data-k2corrosie="{{mastbeeld.k2.corrosie}}"
+            ng-attr-data-k1eenfasekortsluiting="{{mastbeeld.k1.eenfasekortsluiting}}" ng-attr-data-k2eenfasekortsluiting="{{mastbeeld.k2.eenfasekortsluiting}}"
+            ng-attr-data-k1onderhoud="{{mastbeeld.k1.onderhoud}}" ng-attr-data-k2onderhoud="{{mastbeeld.k2.onderhoud}}" ng-attr-data-hoogte="{{mastbeeld.hoogte}}"
+            width="300" onClick="selectMast(this) " />
+         </div>
+        
+        <div class="col-xs-4 ">
+            <p><small>
+                Geometrie: {{mastbeeld.geometrie}} <br>
+                Code: {{mastbeeld.code}} <br>
+                Spanning: {{mastbeeld.spanning}} <br>
+                Hoogte: {{mastbeeld.hoogte}} <br>
+                K1 Normaal: {{mastbeeld.k1.normaal}} <br>
+                K2 Normaal: {{mastbeeld.k2.normaal}} <br>
+                K1 Corrosie: {{mastbeeld.k1.corrosie}} <br>
+                K2 Corrosie: {{mastbeeld.k2.corrosie}} <br>
+                K1 Eenfasekortsluiting: {{mastbeeld.k1.eenfasekortsluiting}} <br>
+                K2 Eenfasekortsluiting: {{mastbeeld.k2.eenfasekortsluiting}} <br>
+                K1 Onderhoud: {{mastbeeld.k1.onderhoud}} <br>
+                K1 Onderhoud: {{mastbeeld.k2.onderhoud}} <br>
+          </small></p>
+        </div>
+    </div>
+</div>

@@ -3,11 +3,34 @@
 
 <head>
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.css" />
+    <link rel="stylesheet" href="css/styles.css">
+
+    <script src="https://code.angularjs.org/1.5.3/angular.js"></script>
+    <script src="https://code.angularjs.org/1.4.8/angular-route.js"></script>
+    <script src="https://code.angularjs.org/1.5.3/angular-sanitize.js"></script>
+    <script src="https://code.angularjs.org/1.5.3/angular-animate.js"></script>
+    <script src="https://angular-ui.github.io/bootstrap/ui-bootstrap-tpls-1.3.1.js"></script>
+
+    <script src="js/app.js"></script>
+    <script src="js/config.js"></script>
+    <script src="js/constants.js"></script>
+    <script src="js/mastbeelden.js"></script>
+    <script src="js/step3.js"></script>
+    <script src="js/functionLibrary.js"></script>
+    <script src="js/HsplController.js"></script>
+    <script src="js/HspkController.js"></script>
+    <script src="js/HspsController.js"></script>
+    <script src="js/TevController.js"></script>
+    <script src="js/modalinstancecontroller.js"></script>
 </head>
 
-<body>
-
+<body ng-app="nenkb">
+    <div class="container">
+        <div id="content" ng-view="">
+        </div>
+    </div>
     <div class="container">
         <h2>Type hoogspanningsverbinding</h2>
         <p id="outputValues">
@@ -27,9 +50,9 @@
                             <label class="control-label col-xs-6">Leiding ge&iuml;soleerd opgesteld?</label>
                             <div class="col-xs-6">
                                 <select class="form-control" id="hspl1">
-                                    <option value="Ja">Ja</option>
-                                    <option value="Nee">Nee</option>
-                                </select>
+                                            <option value="Ja">Ja</option>
+                                            <option value="Nee">Nee</option>
+                                        </select>
                             </div>
                         </div>
                         <div class="form-group" id="parallelloop-hspl">
@@ -82,9 +105,9 @@
                             <label class="control-label col-xs-6">Leiding ge&iuml;soleerd opgesteld?</label>
                             <div class="col-xs-6">
                                 <select class="form-control" id="hspk1">
-                                    <option>Ja</option>
-                                    <option>Nee</option>
-                                </select>
+                                            <option>Ja</option>
+                                            <option>Nee</option>
+                                        </select>
                             </div>
                         </div>
                         <div class="form-group" id="parallelloop-hspk">
@@ -109,11 +132,15 @@
                             <label class="control-label col-xs-6">Ligging kabel</label>
                             <div class="col-xs-6">
                                 <select class="form-control" id="hspk5">
-                                    <option data-code="K01" data-k1normaal="0.248" data-k2normaal="379" data-k1corrosie="0.153" data-k2corrosie="379" data-k1eenfasekortsluiting="19.115" data-k2eenfasekortsluiting="1296" data-k1onderhoud="0.248" data-k2onderhoud="379">Kabel in plat vlak - 10 -50 kV</option>
-                                    <option data-code="K02" data-k1normaal="0.528" data-k2normaal="383" data-k1corrosie="0.330" data-k2corrosie="370" data-k1eenfasekortsluiting="10.296" data-k2eenfasekortsluiting="1290" data-k1onderhoud="0.528" data-k2onderhoud="383">Kabel in plat vlak - 150 -400 kV</option>
-                                    <option data-code="K03" data-k1normaal="0.043" data-k2normaal="344" data-k1corrosie="0.025" data-k2corrosie="400" data-k1eenfasekortsluiting="19.355" data-k2eenfasekortsluiting="1276" data-k1onderhoud="0.043" data-k2onderhoud="344">Kabel in driehoeksligging - 10 -50 kV</option>
-                                    <option data-code="K04" data-k1normaal="0.128" data-k2normaal="400" data-k1corrosie="0.080" data-k2corrosie="400" data-k1eenfasekortsluiting="10.388" data-k2eenfasekortsluiting="1276" data-k1onderhoud="0.128" data-k2onderhoud="400">Kabel in driehoeksligging - 150 -400 kV</option>
-                                </select>
+                                            <option data-code="K01" data-k1normaal="0.248" data-k2normaal="379" data-k1corrosie="0.153" data-k2corrosie="379" data-k1eenfasekortsluiting="19.115"
+                                            data-k2eenfasekortsluiting="1296" data-k1onderhoud="0.248" data-k2onderhoud="379">Kabel in plat vlak - 10 -50 kV</option>
+                                            <option data-code="K02" data-k1normaal="0.528" data-k2normaal="383" data-k1corrosie="0.330" data-k2corrosie="370" data-k1eenfasekortsluiting="10.296"
+                                            data-k2eenfasekortsluiting="1290" data-k1onderhoud="0.528" data-k2onderhoud="383">Kabel in plat vlak - 150 -400 kV</option>
+                                            <option data-code="K03" data-k1normaal="0.043" data-k2normaal="344" data-k1corrosie="0.025" data-k2corrosie="400" data-k1eenfasekortsluiting="19.355"
+                                            data-k2eenfasekortsluiting="1276" data-k1onderhoud="0.043" data-k2onderhoud="344">Kabel in driehoeksligging - 10 -50 kV</option>
+                                            <option data-code="K04" data-k1normaal="0.128" data-k2normaal="400" data-k1corrosie="0.080" data-k2corrosie="400" data-k1eenfasekortsluiting="10.388"
+                                            data-k2eenfasekortsluiting="1276" data-k1onderhoud="0.128" data-k2onderhoud="400">Kabel in driehoeksligging - 150 -400 kV</option>
+                                        </select>
                             </div>
                         </div>
                     </div>
@@ -125,8 +152,8 @@
             <div class="panel panel-default">
                 <div class="panel-heading">
                     <h4 class="panel-title">
-          <a data-toggle="collapse" data-parent="#accordion" href="#collapse3">HSP-station (hoogspanningsstation)</a>
-        </h4>
+                       <a data-toggle="collapse" data-parent="#accordion" href="#collapse3">HSP-station (hoogspanningsstation)</a>
+                    </h4>
                 </div>
                 <div id="collapse3" class="panel-collapse collapse">
                     <div class="panel-body">
@@ -136,9 +163,9 @@
                             <label class="control-label col-xs-6">Leiding ge&iuml;soleerd opgesteld?</label>
                             <div class="col-xs-6">
                                 <select class="form-control" id="hsps1">
-                                    <option>Ja</option>
-                                    <option>Nee</option>
-                                </select>
+                                            <option>Ja</option>
+                                            <option>Nee</option>
+                                        </select>
                             </div>
                         </div>
                         <div class="form-group" id="parallellezijde">
@@ -168,8 +195,8 @@
             <div class="panel panel-default">
                 <div class="panel-heading">
                     <h4 class="panel-title">
-          <a data-toggle="collapse" data-parent="#accordion" href="#collapse4">TEV-systeem (tractie-energievoorziening)</a>
-        </h4>
+                       <a data-toggle="collapse" data-parent="#accordion" href="#collapse4">TEV-systeem (tractie-energievoorziening)</a>
+                    </h4>
                 </div>
                 <div id="collapse4" class="panel-collapse collapse">
                     <div class="panel-body">
@@ -179,9 +206,9 @@
                             <label class="control-label col-xs-6">Leiding ge&iuml;soleerd opgesteld?</label>
                             <div class="col-xs-6">
                                 <select class="form-control" id="tev1">
-                                    <option>Ja</option>
-                                    <option>Nee</option>
-                                </select>
+                                            <option>Ja</option>
+                                            <option>Nee</option>
+                                        </select>
                             </div>
                         </div>
                         <div class="form-group">
@@ -200,10 +227,13 @@
                             <label class="control-label col-xs-6">Type TEV</label>
                             <div class="col-xs-6">
                                 <select class="form-control" id="tev4">
-                                    <option data-code="T01" data-k1normaal="0.191" data-k2normaal="1445" data-k1corrosie="0.033" data-k2corrosie="1445" data-k1eenfasekortsluiting="0.006" data-k2eenfasekortsluiting="1445">TEV Betuweroute (incl. Rotterdamse Havenspoorlijn)</option>
-                                    <option data-code="T02" data-k1normaal="0.108" data-k2normaal="1318" data-k1corrosie="0.024" data-k2corrosie="1318" data-k1eenfasekortsluiting="0.015" data-k2eenfasekortsluiting="1318">TEV HSL-Zuid Noordelije tak (Hoofddorp - Rotterdam)</option>
-                                    <option data-code="T03" data-k1normaal="0.205" data-k2normaal="1230" data-k1corrosie="0.034" data-k2corrosie="1230" data-k1eenfasekortsluiting="0.010" data-k2eenfasekortsluiting="1230">TEV HSL-Zuid Zuidelije tak (Barendrecht - Belgische grens)</option>
-                                </select>
+                                            <option data-code="T01" data-k1normaal="0.191" data-k2normaal="1445" data-k1corrosie="0.033" data-k2corrosie="1445" data-k1eenfasekortsluiting="0.006"
+                                            data-k2eenfasekortsluiting="1445">TEV Betuweroute (incl. Rotterdamse Havenspoorlijn)</option>
+                                            <option data-code="T02" data-k1normaal="0.108" data-k2normaal="1318" data-k1corrosie="0.024" data-k2corrosie="1318" data-k1eenfasekortsluiting="0.015"
+                                            data-k2eenfasekortsluiting="1318">TEV HSL-Zuid Noordelije tak (Hoofddorp - Rotterdam)</option>
+                                            <option data-code="T03" data-k1normaal="0.205" data-k2normaal="1230" data-k1corrosie="0.034" data-k2corrosie="1230" data-k1eenfasekortsluiting="0.010"
+                                            data-k2eenfasekortsluiting="1230">TEV HSL-Zuid Zuidelije tak (Barendrecht - Belgische grens)</option>
+                                        </select>
                             </div>
                         </div>
                     </div>

@@ -1,0 +1,14 @@
+<div class="form-group">
+    <label class="control-label col-xs-6">Hart op hart afstand</label>
+    <div class="col-xs-6">
+        <input type="number" class="form-control" placeholder="Afstand (m)" ng-model="hspk.hartophart">
+    </div>
+    <label class="control-label col-xs-6">Parallelloop</label>
+    <div class="col-xs-6">
+        <input type="number" class="form-control" placeholder="Afstand (km)" ng-model="hspk.parallelloop">
+    </div>
+    <label class="control-label col-xs-6">Ligging kabel</label>
+    <div class="col-xs-6">
+        <select class="form-control" ng-model="hspk.kabelligging" ng-options="kabel.name for kabel in hspk.kabelliggingen"></select>
+    </div>
+</div>
