@@ -21,43 +21,71 @@
 
         vm.kabelliggingen = [
             {
-                code: 'K01', k1normaal: 0.248, k2normaal: 379,
-                k1corrosie: 0.153, k2corrosie: 379,
-                k1eenfasekortsluiting: 19.115,
-                k2eenfasekortsluiting: 1296,
-                k1onderhoud: 0.248,
-                k2onderhoud: 379,
-                name: "Kabel in platvlak - 10-50kV"
+                code: 'K01',
+                name: "Kabel in platvlak - 10-50kV",
+                k1: {
+                    normaal: 0.248,
+                    corrosie: 0.153,
+                    eenfasekortsluiting: 19.115,
+                    onderhoud: 0.248
+                },
+                k2: {
+                    normaal: 379,
+                    corrosie: 379,
+                    eenfasekortsluiting: 1296,
+                    onderhoud: 379
+                }
             },
             {
-                code: 'K02', k1normaal: 0.528, k2normaal: 383,
-                k1corrosie: 0.330, k2corrosie: 370,
-                k1eenfasekortsluiting: 10.296,
-                k2eenfasekortsluiting: 1290,
-                k1onderhoud: 0.528,
-                k2onderhoud: 383,
-                name: "Kabel in plat vlak - 150-400 kV"
+                code: 'K02',
+                name: "Kabel in plat vlak - 150-400 kV",
+                k1: {
+                    normaal: 0.528,
+                    corrosie: 0.330,
+                    eenfasekortsluiting: 10.296,
+                    onderhoud: 0.528
+                },
+                k2: {
+                    normaal: 383,
+                    corrosie: 370,
+                    eenfasekortsluiting: 1290,
+                    onderhoud: 383
+                }
             },
             {
-                code: 'K03', k1normaal: 0.043, k2normaal: 344,
-                k1corrosie: 0.025, k2corrosie: 400,
-                k1eenfasekortsluiting: 19.355,
-                k2eenfasekortsluiting: 1276,
-                k1onderhoud: 0.043,
-                k2onderhoud: 344,
-                name: "Kabel in driehoeksligging - 10-50 kV"
+                code: 'K03',
+                name: "Kabel in driehoeksligging - 10-50 kV",
+                k1: {
+                    normaal: 0.043,
+                    corrosie: 0.025,
+                    eenfasekortsluiting: 19.355,
+                    onderhoud: 0.043
+                },
+                k2: {
+                    normaal: 344,
+                    corrosie: 400,
+                    eenfasekortsluiting: 1276,
+                    onderhoud: 344
+                }
             },
             {
-                code: 'K04', k1normaal: 0.128, k2normaal: 400,
-                k1corrosie: 0.080, k2corrosie: 400,
-                k1eenfasekortsluiting: 10.388,
-                k2eenfasekortsluiting: 1276,
-                k1onderhoud: 0.128,
-                k2onderhoud: 400,
-                name: "Kabel in driehoeksligging - 150-400 kV"
+                code: 'K04',
+                name: "Kabel in driehoeksligging - 150-400 kV",
+                k1: {
+                    normaal: 0.128,
+                    corrosie: 0.080,
+                    eenfasekortsluiting: 10.388,
+                    onderhoud: 0.128
+                },
+                k2: {
+                    normaal: 400,
+                    corrosie: 400,
+                    eenfasekortsluiting: 1276,
+                    onderhoud: 400
+                }
             }
-        ]
-        
+        ];
+
         vm.kabelligging = vm.kabelliggingen[0];
 
         var stack = new Array();
@@ -98,64 +126,21 @@
 
         vm.evaluateStep = function () {
             if (vm.currentStep == "1") {
-                if (vm.leidinggeisoleerd) {
-                    vm.weerstandsBeinvloeding = true;
-                    vm.inductieveBeinvloeding = true;
-                    vm.thermischeBeinvloeding = true;
-                    vm.currentStep = "9";
-                }
-                else {
-                    vm.currentStep = "1.2";
-                }
-                stack.push("1");
+                evaluateStep1();
                 return;
             }
             if (vm.currentStep == "1.2") {
-                if (vm.hartophart < 10) {
-                    vm.thermischeBeinvloeding = false;
-                    vm.thermischeToelichting = step3.II();
-                }
-                else {
-                    vm.thermischeBeinvloeding = true;
-                }
-                if (vm.hartophart < 30) {
-                    vm.weerstandsBeinvloeding = false;
-                    vm.currentStep = "1.2D"
-                }
-                else {
-                    vm.weerstandsBeinvloeding = true;
-                    vm.weerstandsToelichting = null;
-                    vm.currentStep = "1.3";
-                }
-                stack.push("1.2");
+                evaluateStep12();
                 return;
             }
             if (vm.currentStep == "1.2D") {
-                if (vm.afstandtotaarding < 30) {
-                    vm.weerstandsBeinvloeding = false;
-                    vm.weerstandsToelichting = step3.VIII();
-                }
-                else {
-                    vm.weerstandsBeinvloeding = true;
-                    vm.weerstandsToelichting = null;
-                }
-                vm.currentStep = "1.3";
-                stack.push("1.2D");
+                evaluateStep12D();
                 return;
             }
 
             //Bepaal Petersburg
             if (vm.currentStep == "1.3") {
-                if (functionLibrary.PetersBurgKabel(vm.kabelligging, vm.parallelloop, vm.hartophart)) {
-                    vm.inductieveBeinvloeding = true;
-                    vm.inductieveToelichting = true;
-                }
-                else {
-                    vm.inductieveBeinvloeding = false;
-                    vm.inductieveToelichting = step3.VII();
-                }
-                vm.currentStep = "9";
-                stack.push("1.3")
+                evaluateStep13();
                 return;
             }
         }
@@ -165,6 +150,66 @@
         ////////////////
 
         function activate() {
+        }
+
+        function evaluateStep1() {
+            if (vm.leidinggeisoleerd) {
+                vm.weerstandsBeinvloeding = true;
+                vm.inductieveBeinvloeding = true;
+                vm.thermischeBeinvloeding = true;
+                vm.currentStep = "9";
+            }
+            else {
+                vm.currentStep = "1.2";
+            }
+            stack.push("1");
+        }
+
+        function evaluateStep12() {
+            if (vm.hartophart < 10) {
+                vm.thermischeBeinvloeding = false;
+                vm.thermischeToelichting = step3.II();
+            }
+            else {
+                vm.thermischeBeinvloeding = true;
+                vm.thermischeToelichting = null;;
+            }
+            if (vm.hartophart < 30) {
+                vm.weerstandsBeinvloeding = false;
+                vm.currentStep = "1.2D";
+            }
+            else {
+                vm.weerstandsBeinvloeding = true;
+                vm.weerstandsToelichting = null;
+                vm.currentStep = "1.3";
+            }
+            stack.push("1.2");
+        }
+
+        function evaluateStep12D() {
+            if (vm.afstandtotaarding < 30) {
+                vm.weerstandsBeinvloeding = false;
+                vm.weerstandsToelichting = step3.VIII();
+            }
+            else {
+                vm.weerstandsBeinvloeding = true;
+                vm.weerstandsToelichting = null;
+            }
+            vm.currentStep = "1.3";
+            stack.push("1.2D");
+        }
+
+        function evaluateStep13() {
+            if (functionLibrary.PetersBurg(vm.kabelligging, vm.parallelloop, vm.hartophart)) {
+                vm.inductieveBeinvloeding = true;
+                vm.inductieveToelichting = null;
+            }
+            else {
+                vm.inductieveBeinvloeding = false;
+                vm.inductieveToelichting = step3.VII();
+            }
+            vm.currentStep = "9";
+            stack.push("1.3");
         }
     }
 })();

@@ -60,7 +60,7 @@
             var outputValues = '<ol>'
                 + '<li>Controleer ingevulde gegevens</li>'
                 + '<li>Aardingsmethodiek bovengrondse leiding</li>'
-                + '<li>Spaningsniveau</li>'
+                + '<li>Spanningsniveau</li>'
                 + '<li>Type installatie (GIS of openluchtstation)</li>'
                 + '</ol>';
             return outputValues;

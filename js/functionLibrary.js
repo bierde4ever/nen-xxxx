@@ -8,7 +8,7 @@
     function functionLibrary() {
         var service = {
             PetersBurg: PetersBurg,
-            PetersBurgKabel: PetersBurgKabel
+            PetersBurgTev: PetersBurgTev
         };
 
         return service;
@@ -23,13 +23,12 @@
             return ucnormaal < 1 && uccorrosie < 1 && uceenfasekortsluiting < 1 && uconderhoud < 1;
 
         }
-        function PetersBurgKabel(kabel, parallelloop, hartophart) {
-            var ucnormaal = UnityCheck(parallelloop, hartophart, kabel.k1normaal, kabel.k2normaal);
-            var uccorrosie = UnityCheck(parallelloop, hartophart, kabel.k1corrosie, kabel.k2corrosie);
-            var uceenfasekortsluiting = UnityCheck(parallelloop, hartophart, kabel.k1eenfasekortsluiting, kabel.k2eenfasekortsluiting);
-            var uconderhoud = UnityCheck(parallelloop, hartophart, kabel.k1onderhoud, kabel.k2onderhoud);
+        function PetersBurgTev(tevsysteem, parallelloop, hartophart) {
+            var ucnormaal = UnityCheck(parallelloop, hartophart, tevsysteem.k1.normaal, tevsysteem.k2.normaal);
+            var uccorrosie = UnityCheck(parallelloop, hartophart, tevsysteem.k1.corrosie, tevsysteem.k2.corrosie);
+            var uceenfasekortsluiting = UnityCheck(parallelloop, hartophart, tevsysteem.k1.eenfasekortsluiting, tevsysteem.k2.eenfasekortsluiting);
 
-            return ucnormaal < 1 && uccorrosie < 1 && uceenfasekortsluiting < 1 && uconderhoud < 1;
+            return ucnormaal < 1 && uccorrosie < 1 && uceenfasekortsluiting < 1;
         }
 
         function UnityCheck(_l, _a, _k1, _k2) {
