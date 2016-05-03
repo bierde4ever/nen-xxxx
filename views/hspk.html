@@ -1,17 +1,22 @@
 <div class="header col-xs-12">
-    <h2>HSP-kabel (hoogspanningskabel)</h2>
-    <figure class="col-xs-4 col-xs-offset-4">
-        <img ng-src="images/kabel.png" class="img-responsive" width="150" height="150" />
-    </figure>
-    {{hspk.error}}
-    <div>
-        <div id="wizard-content-container">
-            <ng-include src="hspk.getStepTemplate()"></ng-include>
-        </div>
-        <div class="pull-right">
+    <div class="modal-header">
+        <h2>HSP-kabel (hoogspanningskabel)</h2>
+        <figure class="col-xs-4 col-xs-offset-4">
+            <img ng-src="images/kabel.png" class="img-responsive" width="150" height="150" />
+        </figure>
+    </div>
+    <div class="modal-body">
+        <form name="hspkForm" class="form-horizontal">
+            <div id="wizard-content-container">
+                <ng-include src="hspk.getStepTemplate()"></ng-include>
+            </div>
+        </form>
+    </div>
+    <div class="modal-footer">
+        <div class="pull-left">
             <span class="btn-group">
                 <button class="btn btn-default" ng-disabled="hspk.currentStep === '1'" name="previous" type="button" ng-click="hspk.getPreviousStepTemplate()"><i class="fa fa-arrow-left"></i> Vorige</button>
-                <button class="btn btn-primary" ng-disabled="hspk.currentStep === '9'" name="next" type="button" ng-click="hspk.evaluateStep()">Volgende <i class="fa fa-arrow-right"></i></button>
+                <button class="btn btn-primary" ng-disabled="!hspkForm.$valid || hspk.currentStep === '9'" name="next" type="button" ng-click="hspk.evaluateStep()">Volgende <i class="fa fa-arrow-right"></i></button>
             </span>
         </div>
     </div>

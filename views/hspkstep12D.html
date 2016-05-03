@@ -1,6 +1,7 @@
 <div class="form-group">
     <label class="control-label col-xs-6">Afstand tot aarding kabelsysteem</label>
-    <div class="col-xs-6">
-        <input type="number" placeholder="afstand in m" ng-model="hspk.afstandtotaarding" />
+    <div class="col-xs-2">
+        <input type="number" placeholder="afstand in m" ng-model="hspk.afstandtotaarding" required min="5" max="100" class="input-sm" />
     </div>
+    <label class="col-xs-4">(m)</label>
 </div>
