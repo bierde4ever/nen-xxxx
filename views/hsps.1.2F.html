@@ -1,6 +1,12 @@
 <div class="form-group">
-    <label class="control-label col-xs-6">Omtrek hekwerk HSP-station</label>
-    <div class="col-xs-6">
-        <input type="number" class="form-control" placeholder="Omtrek (m)" ng-model="hsps.omtrekhekwerk">
-    </div>
+    <label class="control-label">Leiding ge&iuml;soleerd opgesteld</label>
+    <input type="checkbox" class="from-control" ng-model="hsps.leidinggeisoleerd" disabled>
+</div>
+<div class="form-group">
+    <label class="control-label">Afstand tot hekwerk (m)</label>
+    <input type="number" class="form-control" placeholder="afstand (m)" name="afstandhekwerk" ng-model="hsps.afstandtothekwerk" readonly>
+</div> 
+<div class="form-group" ng-class="{ 'has-error': hspsForm.omtrekhekwerk.$invalid }">
+    <label class="control-label">Omtrek hekwerk HSP-station (m)</label>
+    <input type="number" class="form-control" placeholder="omtrek (m)" name="omtrekhekwerk" ng-model="hsps.omtrekhekwerk" required>
 </div>

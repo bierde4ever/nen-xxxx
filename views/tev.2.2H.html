@@ -1,10 +1,16 @@
 <div class="form-group">
-    <label class="control-label col-xs-6">Parallelloop</label>
-    <div class="col-xs-6">
-        <input type="number" class="form-control" placeholder="Afstand (km)" ng-model="tev.parallelloop">
-    </div>
-    <label class="control-label col-xs-6">Type TEV</label>
-    <div class="col-xs-6">
-        <select class="form-control" ng-model="tev.tevsysteem" ng-options="tevsysteem.name for tevsysteem in tev.tevsystemen"></select>
-    </div>
+    <label class="control-label">Leiding ge&iuml;soleerd opgesteld</label>
+    <input type="checkbox" class="from-control" ng-model="tev.leidinggeisoleerd" disabled>
+</div>
+<div class="form-group">
+    <label class="control-label">Hart op hart buitenste spoor (m)</label>
+    <input type="number" class="form-control" placeholder="afstand (m)" name="hartophart" ng-model="tev.hartophart" readonly>
+</div>
+<div class="form-group" ng-class="{ 'has-error': tevForm.parallelloop.$invalid }">
+    <label class="control-label">Parallelloop (km)</label>
+    <input type="number" class="form-control" placeholder="afstand (km)" name="parallelloop" ng-model="tev.parallelloop" required>
+</div>
+<div class="form-group">
+    <label class="control-label">Type TEV</label>
+    <select class="form-control" name="typetev" ng-model="tev.tevsysteem" ng-options="tevsysteem.name for tevsysteem in tev.tevsystemen"></select>
 </div>

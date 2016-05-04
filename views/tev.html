@@ -1,16 +1,22 @@
 <div class="header col-xs-12">
-    <h2>TEV-systeem (tractie-energievoorziening)</h2>
-    <figure class="col-xs-4 col-xs-offset-4">
-        <img ng-src="images/tevsysteem.png" class="img-responsive" width="150" height="150" />
-    </figure>
-    <div>
-        <div id="wizard-content-container">
-            <ng-include src="tev.getStepTemplate()"></ng-include>
-        </div>
-        <div class="pull-right">
+    <div class="modal-header">
+        <figure>
+            <figcaption>TEV-systeem</figcaption>
+            <img ng-src="images/tevsysteem.png" class="img-responsive" width="50" height="50" />
+        </figure>
+    </div>
+    <div class="modal-body">
+        <form name="tevForm" class="form-horizontal" novalidate>
+            <div id="wizard-content-container">
+                <ng-include src="tev.getStepTemplate()"></ng-include>
+            </div>
+        </form>
+    </div>
+    <div class="modal-footer">
+        <div class="pull-left">
             <span class="btn-group">
                 <button class="btn btn-default" ng-disabled="tev.currentStep === '1'" name="previous" type="button" ng-click="tev.getPreviousStepTemplate()"><i class="fa fa-arrow-left"></i> Vorige</button>
-                <button class="btn btn-primary" ng-disabled="tev.currentStep === '9'" name="next" type="button" ng-click="tev.evaluateStep()">Volgende <i class="fa fa-arrow-right"></i></button>
+                <button class="btn btn-primary" ng-disabled="!tevForm.$valid || tev.currentStep === '9'" name="next" type="button" ng-click="tev.evaluateStep()">Volgende <i class="fa fa-arrow-right"></i></button>
             </span>
         </div>
     </div>

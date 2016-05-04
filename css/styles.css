@@ -1,10 +1,21 @@
-body {
+/*body {
     padding-top: 50px;
-}
+}*/
 
 .glyphicon-ok {
   color: green;
 }
 .glyphicon-remove {
   color: red;
+}
+
+/*a img{
+  width: 150px;
+  height: 150px;
+}*/
+
+@media screen and (max-width: 768px){
+  h1{
+    font-size: 20px;
+  }
 }

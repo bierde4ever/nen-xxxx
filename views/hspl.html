@@ -1,17 +1,24 @@
 <div class="header col-xs-12">
-    <h2>HSP-lijn (hoogspanningslijn)</h2>
-    <figure class="col-xs-4 col-xs-offset-4">
-        <img ng-src="images/lijn.png" class="img-responsive" width="150" height="150" />
-    </figure>
-    {{hspl.error}}
-    <div>
-        <div id="wizard-content-container">
-            <ng-include src="hspl.getStepTemplate()"></ng-include>
-        </div>
-        <div class="pull-right">
+    <div class="modal-header">
+        <figure>
+            <figcaption>HSP-lijn</figcaption>
+            <img ng-src="images/lijn.png" class="img-responsive" width="50" height="50" />
+        </figure>
+    </div>
+
+    <div class="modal-body">
+        <form name="hsplForm" class="form-horizontal" novalidate>
+            <div id="wizard-content-container">
+                <ng-include src="hspl.getStepTemplate()"></ng-include>
+            </div>
+        </form>
+    </div>
+
+    <div class="modal-footer">
+        <div class="pull-left">
             <span class="btn-group">
                 <button class="btn btn-default" name="previous" type="button" ng-disabled="hspl.currentStep === '1'" ng-click="hspl.getPreviousStepTemplate()"><i class="fa fa-arrow-left"></i> Vorige</button>
-                <button class="btn btn-primary" name="next" type="button" ng-disabled="hspl.currentStep === '9'" ng-click="hspl.evaluateStep()">Volgende <i class="fa fa-arrow-right"></i></button>
+                <button class="btn btn-primary" name="next" type="button" ng-disabled="!hsplForm.$valid || hspl.currentStep === '9'" ng-click="hspl.evaluateStep()">Volgende <i class="fa fa-arrow-right"></i></button>
             </span>
         </div>
     </div>

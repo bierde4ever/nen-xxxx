@@ -1,12 +1,12 @@
 <div class="header col-xs-12">
     <div class="modal-header">
-        <h2>HSP-kabel (hoogspanningskabel)</h2>
-        <figure class="col-xs-4 col-xs-offset-4">
-            <img ng-src="images/kabel.png" class="img-responsive" width="150" height="150" />
+        <figure>
+            <figcaption>HSP-kabel</figcaption>
+            <img ng-src="images/kabel.png" class="img-responsive" width="50" height="50" />
         </figure>
     </div>
     <div class="modal-body">
-        <form name="hspkForm" class="form-horizontal">
+        <form name="hspkForm" class="form-horizontal" novalidate>
             <div id="wizard-content-container">
                 <ng-include src="hspk.getStepTemplate()"></ng-include>
             </div>

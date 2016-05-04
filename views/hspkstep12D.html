@@ -1,7 +1,12 @@
 <div class="form-group">
-    <label class="control-label col-xs-6">Afstand tot aarding kabelsysteem</label>
-    <div class="col-xs-2">
-        <input type="number" placeholder="afstand in m" ng-model="hspk.afstandtotaarding" required min="5" max="100" class="input-sm" />
-    </div>
-    <label class="col-xs-4">(m)</label>
+    <label class="control-label">Leiding ge&iuml;soleerd opgesteld</label>
+    <input type="checkbox" class="from-control" ng-model="hspk.leidinggeisoleerd" disabled />
+</div>
+<div class="form-group"">
+    <label class="control-label">Hart op hart afstand (m)</label>
+    <input type="number" class="form-control" placeholder="afstand (m)" ng-model="hspk.hartophart" name="hspkhoph" readonly/>
+</div>
+<div class="form-group" ng-class="{ 'has-error': hspkForm.afstandtotaarding.$invalid }">
+    <label class="control-label">Afstand tot aarding kabelsysteem (m)</label>
+    <input type="number" class="form-control" placeholder="afstand (m)" name="afstandtotaarding" ng-model="hspk.afstandtotaarding" required/>
 </div>

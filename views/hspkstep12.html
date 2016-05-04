@@ -1,6 +1,8 @@
 <div class="form-group">
-    <label class="control-label col-xs-6">Hart op hart afstand</label>
-    <div class="col-xs-6">
-        <input type="number" placeholder="afstand in m" ng-model="hspk.hartophart" name="hspkhoph" required class="input-sm"/>
-    </div>
+    <label class="control-label">Leiding ge&iuml;soleerd opgesteld</label>
+    <input type="checkbox" class="from-control" ng-model="hspk.leidinggeisoleerd" disabled />
+</div>
+<div class="form-group" ng-class="{ 'has-error': hspkForm.hspkhoph.$invalid }">
+    <label class="control-label">Hart op hart afstand (m)</label>
+    <input type="number" class="form-control" placeholder="afstand (m)" ng-model="hspk.hartophart" name="hspkhoph" required/>
 </div>

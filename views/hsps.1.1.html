@@ -1,6 +1,8 @@
 <div class="form-group">
-    <label class="control-label col-xs-6">Afstand tot hekwerk</label>
-    <div class="col-xs-6">
-        <input type="number" placeholder="afstand in m" ng-model="hsps.afstandtothekwerk" />
-    </div>
+    <label class="control-label">Leiding ge&iuml;soleerd opgesteld</label>
+    <input type="checkbox" class="from-control" ng-model="hsps.leidinggeisoleerd" disabled />
+</div>
+<div class="form-group" ng-class="{ 'has-error': hspsForm.afstandhekwerk.$invalid }">
+    <label class="control-label">Afstand tot hekwerk (m)</label>
+    <input type="number" class="form-control" placeholder="afstand (m)" name="afstandhekwerk" ng-model="hsps.afstandtothekwerk" required/>
 </div>
