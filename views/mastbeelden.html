@@ -3,7 +3,6 @@
     <button class="btn btn-warning" type="button" ng-click="inst.cancel()">Cancel</button>
 </div>
 <div class="modal-body row">
-    <p>{{inst.items.length}}</p>
     <div class="col-xs-12" ng-repeat="mastbeeld in inst.items">
         <div class="col-xs-8">
             <img ng-src="{{mastbeeld.imagesrc}}" class="img-responsive"  width="300" ng-click="inst.selected.item = mastbeeld; inst.ok()" />
