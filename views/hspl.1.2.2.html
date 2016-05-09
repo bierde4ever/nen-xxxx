@@ -1,10 +1,10 @@
 <div class="form-group">
     <label class="control-label">Leiding ge&iuml;soleerd opgesteld</label>
-    <select class="form-control" ng-model="hspl.hsplVariables.leidinggeisoleerd" ng-options="y.text for (x, y) in hspl.isolatie" disabled></select>
+    <select class="form-control" ng-model="hspl.leidinggeisoleerd" ng-options="y.text for (x, y) in hspl.isolatie" disabled></select>
 </div>
 <div class="form-group">
     <label class="control-label">Hart op hart afstand (m)</label>
-    <input type="number" class="form-control" placeholder="afstand (m)" name="hartafstand" ng-model="hspl.hsplVariables.hartafstand" readonly/>
+    <input type="number" class="form-control" placeholder="afstand (m)" name="hartafstand" ng-model="hspl.hartafstand" readonly/>
 </div>
 <div class="form-group" ng-show="hspl.step122b">
     <label class="control-label">Afstand tot mast (m)</label>

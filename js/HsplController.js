@@ -24,15 +24,13 @@
         vm.thermischeToelichting = null;
         vm.step122b = false;
 
-        var hsplVariables = {
-            hartafstand: null,
-            leidinggeisoleerd: vm.isolatie.iso01,
-            capacitievebeinvloeding: false,
-            weerstandsbeinvloeding: false,
-            inductievebeinvloeding: false,
-            thermischebeinvloeding: true,
-            mechanischebeinvloeding: false
-        }
+        vm.hartafstand = null;
+        vm.leidinggeisoleerd = vm.isolatie.iso01;
+        vm.capacitievebeinvloeding = false;
+        vm.weerstandsbeinvloeding = false;
+        vm.inductievebeinvloeding = false;
+        vm.thermischebeinvloeding=  true;
+        vm.mechanischebeinvloeding = false;
 
         vm.afstandTotMast = null;
         vm.parallelloop = null;
@@ -106,7 +104,6 @@
 
         vm.selectedMastbeeld = null;
 
-        vm.hsplVariables = hsplVariables;
         vm.evaluateStep = function () {
             if (vm.currentStep == "1") {
                 evaluateStep1();
@@ -153,37 +150,37 @@
         }
 
         function evaluateStep1() {
-            if (vm.hsplVariables.leidinggeisoleerd.value) {
-                vm.hsplVariables.weerstandsbeinvloeding = true;
-                vm.hsplVariables.inductievebeinvloeding = true;
-                vm.hsplVariables.capacitievebeinvloeding = false;
+            if (vm.leidinggeisoleerd.value) {
+                vm.weerstandsbeinvloeding = true;
+                vm.inductievebeinvloeding = true;
+                vm.capacitievebeinvloeding = false;
                 vm.currentStep = "1.1";
             }
             else {
-                vm.hsplVariables.weerstandsbeinvloeding = false;
-                vm.hsplVariables.inductievebeinvloeding = false;
-                vm.hsplVariables.capacitievebeinvloeding = true;
+                vm.weerstandsbeinvloeding = false;
+                vm.inductievebeinvloeding = false;
+                vm.capacitievebeinvloeding = true;
                 vm.currentStep = "1.2";
             }
             stack.push("1");
         }
 
         function evaluateStep11() {
-            if (hsplVariables.hartafstand < 50) {
-                hsplVariables.capacitievebeinvloeding = false;
+            if (vm.hartafstand < 50) {
+                vm.capacitievebeinvloeding = false;
                 vm.capacitieveToelichting = step3.I();
                 vm.currentStep = "9";
             }
             else {
-                hsplVariables.capacitievebeinvloeding = true;
+                vm.capacitievebeinvloeding = true;
                 vm.capacitieveToelichting = null;
                 vm.mechanischeToelichting = null;
-                if (hsplVariables.hartafstand < 58.9) {
-                    hsplVariables.mechanischebeinvloeding = false;
+                if (vm.hartafstand < 58.9) {
+                    vm.mechanischebeinvloeding = false;
                     vm.currentStep = "1.1.2a";
                 }
                 else {
-                    hsplVariables.mechanischebeinvloeding = true;
+                    vm.mechanischebeinvloeding = true;
                     vm.currentStep = "9";
                 }
             }
@@ -192,11 +189,11 @@
 
         function evaluateStep112a() {
             if (vm.afstandTotMast < vm.selectedMastbeeld.hoogte) {
-                vm.hsplVariables.mechanischebeinvloeding = false;
+                vm.mechanischebeinvloeding = false;
                 vm.mechanischeToelichting = "Mechanische beschadiging: Treed in overleg!";
             }
             else {
-                vm.hsplVariables.mechanischebeinvloeding = true;
+                vm.mechanischebeinvloeding = true;
                 vm.mechanischeToelichting = null;
             }
             vm.currentStep = "9";
@@ -204,13 +201,13 @@
         }
 
         function evaluateStep12() {
-            if (hsplVariables.hartafstand < 50) {
-                hsplVariables.weerstandsbeinvloeding = false;
+            if (vm.hartafstand < 50) {
+                vm.weerstandsbeinvloeding = false;
                 vm.currentStep = "1.2.2b";
                 vm.step122b = true;
             }
             else {
-                hsplVariables.weerstandsbeinvloeding = true;
+                vm.weerstandsbeinvloeding = true;
                 vm.step122b = false;
                 vm.currentStep = "1.2.2";
             }
@@ -219,11 +216,11 @@
 
         function evaluateStep122b() {
             if (vm.afstandTotMast < 50) {
-                hsplVariables.weerstandsbeinvloeding = false;
+                vm.weerstandsbeinvloeding = false;
                 vm.weerstandsToelichting = step3.VI();
             }
             else {
-                hsplVariables.weerstandsbeinvloeding = true;
+                vm.weerstandsbeinvloeding = true;
                 vm.weerstandsToelichting = null;
             }
             vm.currentStep = "1.2.2";
@@ -232,32 +229,30 @@
 
         function evaluateStep122() {
             if (functionLibrary.PetersBurg(vm.selectedMastbeeld, vm.parallelloop, vm.afstandTotMast)) {
-                hsplVariables.inductievebeinvloeding = true;
+                vm.inductievebeinvloeding = true;
                 vm.inductieveToelichting = null;
             }
             else {
-                hsplVariables.inductievebeinvloeding = false;
+                vm.inductievebeinvloeding = false;
                 vm.inductieveToelichting = step3.VII();
             }
-            if (hsplVariables.hartafstand < 58.9) {
-                hsplVariables.mechanischebeinvloeding = false;
+            if (vm.hartafstand < 58.9) {
+                vm.mechanischebeinvloeding = false;
                 vm.mechanischeToelichting = null;
                 if (vm.afstandTotMast < vm.selectedMastbeeld.hoogte) {
-                    vm.hsplVariables.mechanischebeinvloeding = false;
+                    vm.mechanischebeinvloeding = false;
                     vm.mechanischeToelichting = "Mechanische beschadiging: Treed in overleg!";
                 }
                 else {
-                    vm.hsplVariables.mechanischebeinvloeding = true;
+                    vm.mechanischebeinvloeding = true;
                 }
             }
             else {
-                hsplVariables.mechanischebeinvloeding = true;
+                vm.mechanischebeinvloeding = true;
                 vm.mechanischeToelichting = null;
             }
             vm.currentStep = "9";
             stack.push("1.2.2");
         }
-
-
     };
 } ());
