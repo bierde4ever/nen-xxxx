@@ -93,23 +93,23 @@
         vm.steps = [
             {
                 step: "1",
-                template: "views/hspkstep1.html"
+                template: "views/hspk.1.html"
             },
             {
                 step: "1.2",
-                template: "views/hspkstep12.html"
+                template: "views/hspk.1.2.html"
             },
             {
                 step: "1.2D",
-                template: "views/hspkstep12D.html"
+                template: "views/hspk.1.2D.html"
             },
             {
                 step: "1.3",
-                template: "views/hspkstep13.html"
+                template: "views/hspk.1.3.html"
             },
             {
                 step: "9",
-                template: "views/hspkstep9.html"
+                template: "views/hspk.9.html"
             }
         ];
 
