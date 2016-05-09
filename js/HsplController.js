@@ -42,51 +42,31 @@
         vm.steps = [
             {
                 step: "1",
-                template: "views/hsplstep1.html"
+                template: "views/hspl.1.html"
             },
             {
                 step: "1.1",
-                template: "views/hsplstep11.html"
-            },
-            {
-                step: "1.1.1",
-                template: "views/hsplstep111.html"
+                template: "views/hspl.1.1.html"
             },
             {
                 step: "1.1.2a",
-                template: "views/hsplstep112a.html"
+                template: "views/hspl.1.1.2a.html"
             },
             {
                 step: "1.2",
-                template: "views/hsplstep11.html"
-            },
-            {
-                step: "1.2.1",
-                template: "views/hsplstep121.html"
+                template: "views/hspl.1.1.html"
             },
             {
                 step: "1.2.2",
-                template: "views/hsplstep122.html"
-            },
-            {
-                step: "1.2.2a",
-                template: "views/hsplstep112a.html"
+                template: "views/hspl.1.2.2.html"
             },
             {
                 step: "1.2.2b",
-                template: "views/hsplstep122b.html"
-            },
-            {
-                step: "1.2.3",
-                template: "views/hsplstep11.html"
-            },
-            {
-                step: "1.2.4",
-                template: "views/hsplstep124.html"
+                template: "views/hspl.1.2.2b.html"
             },
             {
                 step: "9",
-                template: "views/hsplstep9.html"
+                template: "views/hspl.9.html"
             }
         ];
 
