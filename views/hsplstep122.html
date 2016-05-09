@@ -6,13 +6,12 @@
     <label class="control-label">Hart op hart afstand (m)</label>
     <input type="number" class="form-control" placeholder="afstand (m)" name="hartafstand" ng-model="hspl.hsplVariables.hartafstand" readonly/>
 </div>
-
-<div class="form-group">
+<div class="form-group" ng-show="hspl.step122b">
     <label class="control-label">Afstand tot mast (m)</label>
     <input type="number" class="form-control" name="mastafstand" placeholder="Afstand (m)" ng-model="hspl.afstandTotMast" readonly >
 </div>
 <div class="form-group" ng-class="{ 'has-error': hsplForm.parallelloop.$invalid }">
-    <label class="control-label">Parallelloop</label>
+    <label class="control-label">Parallelloop (km)</label>
     <input type="number" class="form-control" name="parallelloop" placeholder="afstand (km)" ng-model="hspl.pararllelloop" required>
 </div>
 <div class="form-group" ng-class="{ 'has-error': !hspl.selectedMastbeeld }">
