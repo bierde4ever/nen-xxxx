@@ -1,4 +1,4 @@
 <div class="form-group">
     <label class="control-label">Leiding ge&iuml;soleerd opgesteld</label>
-    <input type="checkbox" class="from-control" ng-model="hsps.leidinggeisoleerd" />
+    <select class="form-control" ng-model="hsps.leidinggeisoleerd" ng-options="y.text for (x, y) in hsps.isolatie"></select>
 </div>

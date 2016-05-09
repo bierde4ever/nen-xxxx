@@ -9,13 +9,18 @@
     function HspsController(step3, $uibModal, $log, functionLibrary) {
         var vm = this;
 
+        vm.isolatie = {
+            iso01: { value: true, text: "Ja" },
+            iso02: { value: false, text: "Nee" }
+        }
+        
         vm.currentStep = "1";
         vm.capacitieveBeinvloeding = false;
         vm.mechanischeBeinvloeding = true;
         vm.weerstandsBeinvloeding = false;
         vm.inductieveBeinvloeding = false;
         vm.thermischeBeinvloeding = true;
-        vm.leidinggeisoleerd = true;
+        vm.leidinggeisoleerd = vm.isolatie.iso01;
         vm.afstandtothekwerk = null;
         vm.omtrekhekwerk = null;
         vm.parallelloop = null;
@@ -112,7 +117,7 @@
         }
 
         function evaluateStep1() {
-            if (vm.leidinggeisoleerd) {
+            if (vm.leidinggeisoleerd.value) {
                 vm.weerstandsBeinvloeding = true;
                 vm.inductieveBeinvloeding = true;
                 vm.currentStep = "1.1";

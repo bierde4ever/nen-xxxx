@@ -1,6 +1,6 @@
 <div class="form-group">
     <label class="control-label">Leiding ge&iuml;soleerd opgesteld</label>
-    <input type="checkbox" class="from-control" ng-model="tev.leidinggeisoleerd" disabled>
+    <select class="form-control" ng-model="tev.leidinggeisoleerd" ng-options="y.text for (x, y) in tev.isolatie" disabled></select>
 </div>
 <div class="form-group">
     <label class="control-label">Hart op hart buitenste spoor (m)</label>

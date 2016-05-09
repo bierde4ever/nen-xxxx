@@ -9,13 +9,18 @@
     function HspkController(step3, $uibModal, $log, functionLibrary) {
         var vm = this;
 
+        vm.isolatie = {
+            iso01: { value: true, text: "Ja" },
+            iso02: { value: false, text: "Nee" }
+        }
+
         vm.currentStep = "1";
         vm.capacitieveBeinvloeding = true;
         vm.mechanischeBeinvloeding = true;
         vm.weerstandsBeinvloeding = false;
         vm.inductieveBeinvloeding = false;
         vm.thermischeBeinvloeding = false;
-        vm.leidinggeisoleerd = true;
+        vm.leidinggeisoleerd = vm.isolatie.iso01;
         vm.hartophart = null;
         vm.parallelloop = null;
 
@@ -153,7 +158,7 @@
         }
 
         function evaluateStep1() {
-            if (vm.leidinggeisoleerd) {
+            if (vm.leidinggeisoleerd.value) {
                 vm.weerstandsBeinvloeding = true;
                 vm.inductieveBeinvloeding = true;
                 vm.thermischeBeinvloeding = true;
